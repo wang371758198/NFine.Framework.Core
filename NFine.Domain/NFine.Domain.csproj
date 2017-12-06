@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="01 Infrastructure\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NFine.Core\NFine.Code.csproj" />
+    <ProjectReference Include="..\NFine.Data\NFine.Data.csproj" />
+  </ItemGroup>
+
+</Project>
