@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.DrawingCore;
+using System.DrawingCore.Imaging;
 using System.IO;
 using System.Text;
+
 
 namespace NFine.Code
 {
@@ -10,8 +12,6 @@ namespace NFine.Code
     {
         public byte[] GetVerifyCode()
         {
-            return null;
-            /*
             int codeW = 80;
             int codeH = 30;
             int fontSize = 16;
@@ -30,7 +30,8 @@ namespace NFine.Code
             }
             //写入Session、验证码加密
             WebHelper.WriteSession("nfine_session_verifycode", Md5.md5(chkCode.ToLower(), 16));
-            //创建画布
+           
+                //创建画布
             Bitmap bmp = new Bitmap(codeW, codeH);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.White);
@@ -68,7 +69,7 @@ namespace NFine.Code
                 g.Dispose();
                 bmp.Dispose();
             }
-            */
+            
         }
     }
 }
