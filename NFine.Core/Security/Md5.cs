@@ -21,15 +21,26 @@ namespace NFine.Code
             if (code == 16)
             {
                 var md5 = System.Security.Cryptography.MD5.Create();
-                byte [] bytes = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(str));
-                strEncrypt = System.Text.Encoding.UTF8.GetString(bytes).Substring(8,16);
+                byte[] bytes = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(str));
+                StringBuilder sBuilder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    sBuilder.Append(bytes[i].ToString("x2"));
+                }
+                strEncrypt = sBuilder.ToString().Substring(8, 16);
+
             }
 
             if (code == 32)
             {
                 var md5 = System.Security.Cryptography.MD5.Create();
                 byte[] bytes = md5.ComputeHash(System.Text.Encoding.UTF8.GetBytes(str));
-                strEncrypt = System.Text.Encoding.UTF8.GetString(bytes);
+                StringBuilder sBuilder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    sBuilder.Append(bytes[i].ToString("x2"));
+                }
+                strEncrypt = sBuilder.ToString();
             }
 
             return strEncrypt;

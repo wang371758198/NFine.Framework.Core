@@ -5,11 +5,14 @@ using System.Web;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+
 
 namespace NFine.Code
 {
     public class WebHelper
     {
+
         #region ResolveUrl(解析相对Url)
         /// <summary>
         /// 解析相对Url
@@ -131,7 +134,8 @@ namespace NFine.Code
         {
             if (key.IsEmpty())
                 return;
-           // HttpContext.Current.Session[key] = value;
+            string json = JsonConvert.SerializeObject(value);
+            HttpContext.Current.Session.Set(key, System.Text.Encoding.UTF8.GetBytes(json));
         }
 
         /// <summary>
@@ -152,8 +156,12 @@ namespace NFine.Code
         {
             if (key.IsEmpty())
                 return string.Empty;
-            // return HttpContext.Current.Session[key] as string;
-            throw new Exception("未实现");
+
+            if (HttpContext.Current.Session.TryGetValue(key, out byte[] bytes))
+                return System.Text.Encoding.UTF8.GetString(bytes);
+           
+            return string.Empty;
+
         }
         /// <summary>
         /// 删除指定Session
@@ -163,7 +171,7 @@ namespace NFine.Code
         {
             if (key.IsEmpty())
                 return;
-          //  HttpContext.Current.Session.Contents.Remove(key);
+            HttpContext.Current.Session.Remove(key);
         }
 
         #endregion
@@ -176,13 +184,7 @@ namespace NFine.Code
         /// <param name="strValue">值</param>
         public static void WriteCookie(string strName, string strValue)
         {
-            //HttpCookie cookie = HttpContext.Current.Request.Cookies[strName];
-            //if (cookie == null)
-            //{
-            //    cookie = new HttpCookie(strName);
-            //}
-            //cookie.Value = strValue;
-            //HttpContext.Current.Response.AppendCookie(cookie);
+            HttpContext.Current.Response.Cookies.Append(strName, strValue);
         }
         /// <summary>
         /// 写cookie值
@@ -192,14 +194,7 @@ namespace NFine.Code
         /// <param name="strValue">过期时间(分钟)</param>
         public static void WriteCookie(string strName, string strValue, int expires)
         {
-            //HttpCookie cookie = HttpContext.Current.Request.Cookies[strName];
-            //if (cookie == null)
-            //{
-            //    cookie = new HttpCookie(strName);
-            //}
-            //cookie.Value = strValue;
-            //cookie.Expires = DateTime.Now.AddMinutes(expires);
-            //HttpContext.Current.Response.AppendCookie(cookie);
+            HttpContext.Current.Response.Cookies.Append(strName,strName,new Microsoft.AspNetCore.Http.CookieOptions() { Expires =  DateTime.Now.AddMinutes(expires) });
         }
         /// <summary>
         /// 读cookie值
@@ -208,11 +203,8 @@ namespace NFine.Code
         /// <returns>cookie值</returns>
         public static string GetCookie(string strName)
         {
-            if (HttpContext.Current.Request.Cookies != null && HttpContext.Current.Request.Cookies[strName] != null)
-            {
-                //return HttpContext.Current.Request.Cookies[strName].Value.ToString();
-            }
-            return "";
+            HttpContext.Current.Request.Cookies.TryGetValue(strName, out string result);
+            return result;
         }
         /// <summary>
         /// 删除Cookie对象
@@ -220,50 +212,14 @@ namespace NFine.Code
         /// <param name="CookiesName">Cookie对象名称</param>
         public static void RemoveCookie(string CookiesName)
         {
-            //HttpCookie objCookie = new HttpCookie(CookiesName.Trim());
-            //objCookie.Expires = DateTime.Now.AddYears(-5);
-            //HttpContext.Current.Response.Cookies.Add(objCookie);
+            HttpContext.Current.Response.Cookies.Delete(CookiesName);
         }
         #endregion
 
         #region GetFileControls(获取客户端文件控件集合)
-        /*
-        /// <summary>
-        /// 获取有效客户端文件控件集合,文件控件必须上传了内容，为空将被忽略,
-        /// 注意:Form标记必须加入属性 enctype="multipart/form-data",服务器端才能获取客户端file控件.
-        /// </summary>
-        public static List<HttpPostedFile> GetFileControls()
-        {
-            var result = new List<HttpPostedFile>();
-            var files = HttpContext.Current.Request.Files;
-            if (files.Count == 0)
-                return result;
-            for (int i = 0; i < files.Count; i++)
-            {
-                var file = files[i];
-                if (file.ContentLength == 0)
-                    continue;
-                result.Add(files[i]);
-            }
-            return result;
-        }
-        */
         #endregion
 
         #region GetFileControl(获取第一个有效客户端文件控件)
-        /*
-        /// <summary>
-        /// 获取第一个有效客户端文件控件,文件控件必须上传了内容，为空将被忽略,
-        /// 注意:Form标记必须加入属性 enctype="multipart/form-data",服务器端才能获取客户端file控件.
-        /// </summary>
-        public static HttpPostedFile GetFileControl()
-        {
-            var files = GetFileControls();
-            if (files == null || files.Count == 0)
-                return null;
-            return files[0];
-        }
-        */
         #endregion
 
         #region HttpWebRequest(请求网络资源)
@@ -362,7 +318,8 @@ namespace NFine.Code
             Htmlstring = Regex.Replace(Htmlstring, @"&rdquo;", "", RegexOptions.IgnoreCase);
             Htmlstring.Replace(">", "");
             Htmlstring.Replace("\r\n", "");
-           // Htmlstring = HttpContext.Current.Server.HtmlEncode(Htmlstring).Trim();
+            
+            Htmlstring = HtmlEncode(Htmlstring).Trim();
             return Htmlstring;
 
         }

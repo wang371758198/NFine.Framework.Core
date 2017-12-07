@@ -13,4 +13,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NFine.Application\NFine.Application.csproj" />
+    <ProjectReference Include="..\NFine.Core\NFine.Code.csproj" />
+    <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

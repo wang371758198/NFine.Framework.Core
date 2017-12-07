@@ -6,13 +6,9 @@ using System.Text;
 
 namespace NFine.Code
 {
-   public class ConfigurationManager
+   public static class ConfigurationManager
     {
         private static IConfiguration config;
-        static ConfigurationManager()
-        {
-             config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true).Build();
-        }
 
         /// <summary>
         /// 获取appsettings.json 中appSettings配置
@@ -31,6 +27,11 @@ namespace NFine.Code
             {
                 return config.GetSection("connectionStrings");
             }
+        }
+
+        public static void Configure(IConfiguration configuration)
+        {
+            config = configuration;
         }
 
     }

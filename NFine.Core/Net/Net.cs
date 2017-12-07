@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -20,9 +21,10 @@ namespace NFine.Code
         {
             get
             {
+                throw new NotImplementedException();
                 var result = string.Empty;
-                if (HttpContext.Current != null)
-                    result = GetWebClientIp();
+               // if (HttpContext.Current != null)
+               //     result = GetWebClientIp();
                 if (result.IsEmpty())
                     result = GetLanIp();
                 return result;
@@ -48,8 +50,8 @@ namespace NFine.Code
         /// </summary>
         private static string GetWebRemoteIp()
         {
-            throw new Exception("未实现");
-           // return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+            throw new NotImplementedException();
+            // return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
         }
 
         /// <summary>
@@ -76,7 +78,8 @@ namespace NFine.Code
         {
             get
             {
-                return HttpContext.Current == null ? Dns.GetHostName() : GetWebClientHostName();
+                throw new NotImplementedException();
+                //return HttpContext.Current == null ? Dns.GetHostName() : GetWebClientHostName();
             }
         }
 
@@ -85,7 +88,7 @@ namespace NFine.Code
         /// </summary>
         private static string GetWebClientHostName()
         {
-            throw new Exception("未实现");
+            throw new NotImplementedException();
             //if (!HttpContext.Current.Request.IsLocal)
             //    return string.Empty;
             var ip = GetWebRemoteIp();
@@ -195,9 +198,9 @@ namespace NFine.Code
         {
             get
             {
-                throw new Exception("未实现");
-                if (HttpContext.Current == null)
-                    return string.Empty;
+                throw new NotImplementedException();
+                //if (HttpContext.Current == null)
+                return string.Empty;
               //  var browser = HttpContext.Current.Request.Browser;
               //    return string.Format("{0} {1}", browser.Browser, browser.Version);
             }

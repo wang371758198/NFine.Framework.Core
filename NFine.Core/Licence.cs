@@ -11,8 +11,8 @@ namespace NFine.Code
     {
         public static bool IsLicence(string key)
         {
-            
-            string host = HttpContext.Current.Request.Host.Host.ToLower();
+            throw new NotImplementedException();
+            string host = "";// HttpContext.Current.Request.Host.Host.ToLower();
             if (host.Equals("localhost"))
                 return true;
             string licence = Configs.GetValue("LicenceKey");

@@ -3,17 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NFine.Code
+namespace System.Web
 {
     public static class HttpContext
     {
-        private static IHttpContextAccessor _accessor;
+        private static Microsoft.AspNetCore.Http.IHttpContextAccessor m_httpContextAccessor;
 
-        public static Microsoft.AspNetCore.Http.HttpContext Current => _accessor.HttpContext;
 
-        internal static void Configure(IHttpContextAccessor accessor)
+        public static void Configure(Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor)
         {
-            _accessor = accessor;
+            m_httpContextAccessor = httpContextAccessor;
         }
+
+
+        public static Microsoft.AspNetCore.Http.HttpContext Current
+        {
+            get
+            {
+                return m_httpContextAccessor.HttpContext;
+            }
+        }
+
+
     }
+
 }

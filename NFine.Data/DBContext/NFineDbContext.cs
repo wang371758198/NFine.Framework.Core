@@ -14,7 +14,7 @@ using NFine.Code;
 
 namespace NFine.Data
 {
-    public class NFineDbContext : DbContext
+    public partial class NFineDbContext : DbContext
     {
         public NFineDbContext()
             : base()
@@ -28,10 +28,6 @@ namespace NFine.Data
         }
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-           
-            base.OnModelCreating(modelBuilder);
-        }
+       
     }
 }
