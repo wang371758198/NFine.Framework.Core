@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EntityTypeConfiguration.cs" />
+    <Compile Remove="NFineDbContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj" />
   </ItemGroup>
 

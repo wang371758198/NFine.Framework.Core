@@ -82,7 +82,9 @@ namespace NFine.Web.Controllers
 
         public IActionResult GetConfig()
         {
-            return Content(ConfigurationManager.ConnectionStrings["NFineDbContext"].ToString());
+              NFine.Data.RepositoryBase db = new NFine.Data.RepositoryBase();
+              var entity = db.FindEntity<UserEntity>("6903ab9d-20cd-44c4-a380-09f229366e1f");
+              return Content(Newtonsoft.Json.JsonConvert.SerializeObject(entity,Newtonsoft.Json.Formatting.Indented));
         }
 
     }

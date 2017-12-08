@@ -1,20 +1,25 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Domain.Entity.SystemManage;
-
+﻿using NFine.Domain.Entity.SystemManage;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace NFine.Mapping.SystemManage
 {
-    public class UserMap //: EntityTypeConfiguration<UserEntity>
+    public class UserMap : EntityTypeConfiguration<UserEntity>
     {
         //public UserMap()
         //{
         //    this.ToTable("Sys_User");
         //    this.HasKey(t => t.F_Id);
         //}
+        //public override void Map(EntityTypeBuilder<UserEntity> builder)
+        //{
+        //    builder.ToTable("Sys_User");
+        //    builder.HasKey(_ => _.F_Id);
+        //}
+
+        public override void Map(ModelBuilder builder)
+        {
+            builder.Entity<UserEntity>().ToTable("Sys_User").HasKey(_ => _.F_Id);
+        }
     }
 }

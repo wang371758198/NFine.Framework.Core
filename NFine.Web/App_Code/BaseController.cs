@@ -21,6 +21,10 @@ namespace NFine.Web.Controllers
 
     public class BaseController : Controller
     {
+        public BaseController()
+        {
+            this.Session = new Session();
+        }
 
         /// <summary>
         /// HttpContext的Session

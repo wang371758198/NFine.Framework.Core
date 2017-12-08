@@ -17,6 +17,7 @@
     <ProjectReference Include="..\NFine.Application\NFine.Application.csproj" />
     <ProjectReference Include="..\NFine.Core\NFine.Code.csproj" />
     <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj" />
+    <ProjectReference Include="..\NFine.Mapping\NFine.Mapping.csproj" />
   </ItemGroup>
 
 </Project>

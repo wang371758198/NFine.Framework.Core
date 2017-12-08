@@ -27,7 +27,27 @@ namespace NFine.Data
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["NFineDbContext"]);
         }
 
+        // public DbSet<UserEntity> UserEntities { get; set; }
 
-       
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            string currentAssembleFileName = Assembly.GetExecutingAssembly().CodeBase.ToString();
+            Console.WriteLine("currentAssembleFileName:" + currentAssembleFileName);
+            string assembleFileName = currentAssembleFileName.Replace(".Data.", ".Mapping.").Replace("file:///","");
+            Console.WriteLine("assembleFileName Path: "+assembleFileName);
+            Assembly asm = Assembly.LoadFile(assembleFileName);
+            var typesToRegister = asm.GetTypes()
+            .Where(type => !String.IsNullOrEmpty(type.Namespace))
+            .Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
+            foreach (var type in typesToRegister)
+            {
+                object configurationInstance = Activator.CreateInstance(type);
+               
+                modelBuilder.AddConfiguration(type, configurationInstance);
+            }
+            //modelBuilder.AddConfiguration(new UserMap());
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }

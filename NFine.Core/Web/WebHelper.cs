@@ -134,7 +134,14 @@ namespace NFine.Code
         {
             if (key.IsEmpty())
                 return;
-            string json = JsonConvert.SerializeObject(value);
+            string json;
+            if (value.GetType().ToString().Equals("System.String"))
+            {
+                json = value.ToString();
+            }
+            else
+                json = value.ToJson();
+           
             HttpContext.Current.Session.Set(key, System.Text.Encoding.UTF8.GetBytes(json));
         }
 

@@ -1,16 +1,14 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Domain.Entity.SystemManage;
+﻿using NFine.Domain.Entity.SystemManage;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace NFine.Mapping.SystemManage
 {
-    public class ModuleButtonMap //: EntityTypeConfiguration<ModuleButtonEntity>
+    public class ModuleButtonMap : EntityTypeConfiguration<ModuleButtonEntity>
     {
-      
+        public override void Map(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ModuleButtonEntity>().ToTable("Sys_ModuleButton").HasKey(_ => _.F_Id);
+        }
     }
 }

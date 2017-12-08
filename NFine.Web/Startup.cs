@@ -30,6 +30,11 @@ namespace NFine.Web
         {
             services.AddMvc();
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +55,8 @@ namespace NFine.Web
 
             //注册全局Configuration对象
             NFine.Code.ConfigurationManager.Configure(Configuration);
+
+            app.UseSession();
 
             app.UseStaticFiles();
 
