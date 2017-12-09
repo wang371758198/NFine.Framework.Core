@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
+using System.Web;
 
 namespace NFine.Code
 {
@@ -21,10 +21,9 @@ namespace NFine.Code
         {
             get
             {
-                throw new NotImplementedException();
                 var result = string.Empty;
-               // if (HttpContext.Current != null)
-               //     result = GetWebClientIp();
+                if (HttpContext.Current != null)
+                    result = GetWebClientIp();
                 if (result.IsEmpty())
                     result = GetLanIp();
                 return result;
@@ -50,8 +49,7 @@ namespace NFine.Code
         /// </summary>
         private static string GetWebRemoteIp()
         {
-            throw new NotImplementedException();
-            // return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+            return HttpContext.Current.Request.HttpContext.Connection.RemoteIpAddress.ToString();
         }
 
         /// <summary>
@@ -78,8 +76,7 @@ namespace NFine.Code
         {
             get
             {
-                throw new NotImplementedException();
-                //return HttpContext.Current == null ? Dns.GetHostName() : GetWebClientHostName();
+                return HttpContext.Current == null ? Dns.GetHostName() : GetWebClientHostName();
             }
         }
 
@@ -88,9 +85,9 @@ namespace NFine.Code
         /// </summary>
         private static string GetWebClientHostName()
         {
-            throw new NotImplementedException();
-            //if (!HttpContext.Current.Request.IsLocal)
-            //    return string.Empty;
+           
+            if (!(HttpContext.Current.Request.Host.Host == "localhost"))
+                 return string.Empty;
             var ip = GetWebRemoteIp();
             var result = Dns.GetHostEntry(IPAddress.Parse(ip)).HostName;
             if (result == "localhost.localdomain")
@@ -198,11 +195,10 @@ namespace NFine.Code
         {
             get
             {
-                throw new NotImplementedException();
-                //if (HttpContext.Current == null)
-                return string.Empty;
-              //  var browser = HttpContext.Current.Request.Browser;
-              //    return string.Format("{0} {1}", browser.Browser, browser.Version);
+
+                if (HttpContext.Current == null)
+                    return string.Empty;
+                return HttpContext.Current.Request.Headers["User-Agent"].ToString();
             }
         }
         #endregion

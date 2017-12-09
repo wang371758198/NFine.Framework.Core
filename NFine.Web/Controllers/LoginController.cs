@@ -82,9 +82,14 @@ namespace NFine.Web.Controllers
 
         public IActionResult GetConfig()
         {
-              NFine.Data.RepositoryBase db = new NFine.Data.RepositoryBase();
-              var entity = db.FindEntity<UserEntity>("6903ab9d-20cd-44c4-a380-09f229366e1f");
-              return Content(Newtonsoft.Json.JsonConvert.SerializeObject(entity,Newtonsoft.Json.Formatting.Indented));
+            OperatorModel operatorModel = new OperatorModel();
+            var str = DESEncrypt.Encrypt(operatorModel.ToJson());
+            //WebHelper.WriteSession("nfine_loginuserkey_2016", str);
+           //   HttpContext.Session.TryGetValue("nfine_loginuserkey_2016", out byte[] bytes);
+
+           // var encryptString = System.Text.Encoding.UTF8.GetString(bytes);
+            var decryptString = DESEncrypt.Decrypt(str);
+            return Content("encrypt:  "+str +" \n decrypt: "+decryptString,"application/json");
         }
 
     }

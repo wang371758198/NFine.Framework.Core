@@ -33,6 +33,7 @@ namespace NFine.Data
         public int Update(TEntity entity)
         {
             dbcontext.Set<TEntity>().Attach(entity);
+           
             PropertyInfo[] props = entity.GetType().GetProperties();
             foreach (PropertyInfo prop in props)
             {
@@ -40,9 +41,10 @@ namespace NFine.Data
                 {
                     if (prop.GetValue(entity, null).ToString() == "&nbsp;")
                         dbcontext.Entry(entity).Property(prop.Name).CurrentValue = null;
-                    dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
+                  //  dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
                 }
             }
+            dbcontext.Entry<TEntity>(entity).State = EntityState.Modified;
             return dbcontext.SaveChanges();
         }
         public int Delete(TEntity entity)

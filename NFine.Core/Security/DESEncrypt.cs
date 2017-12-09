@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -10,7 +11,10 @@ namespace NFine.Code
     /// </summary>
     public class DESEncrypt
     {
-        private static string DESKey = "nfine_desencrypt_2016";
+        /// <summary>
+        /// 加密的key一定要32位
+        /// </summary>
+        private static string DESKey = "E546C8DF278CD5931069B522E695D4F2";
 
         #region ========加密========
         /// <summary>
@@ -30,23 +34,33 @@ namespace NFine.Code
         /// <returns></returns> 
         public static string Encrypt(string Text, string sKey)
         {
-            DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-            byte[] inputByteArray;
-            inputByteArray = Encoding.Default.GetBytes(Text);
-            des.Key = ASCIIEncoding.ASCII.GetBytes(Md5.md5(sKey, 32).Substring(0, 8));
-            //des.Key = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            //des.IV = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            des.IV = ASCIIEncoding.ASCII.GetBytes(Md5.md5(sKey, 32).Substring(0, 8));
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
-            cs.Write(inputByteArray, 0, inputByteArray.Length);
-            cs.FlushFinalBlock();
-            StringBuilder ret = new StringBuilder();
-            foreach (byte b in ms.ToArray())
+            var key = Encoding.UTF8.GetBytes(sKey);
+          
+            using (var aesAlg = Aes.Create())
             {
-                ret.AppendFormat("{0:X2}", b);
+                using (var encryptor = aesAlg.CreateEncryptor(key, aesAlg.IV))
+                {
+                    using (var msEncrypt = new MemoryStream())
+                    {
+                        using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                        using (var swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(Text);
+                        }
+
+                        var iv = aesAlg.IV;
+
+                        var decryptedContent = msEncrypt.ToArray();
+
+                        var result = new byte[iv.Length + decryptedContent.Length];
+
+                        Buffer.BlockCopy(iv, 0, result, 0, iv.Length);
+                        Buffer.BlockCopy(decryptedContent, 0, result, iv.Length, decryptedContent.Length);
+
+                        return Convert.ToBase64String(result);
+                    }
+                }
             }
-            return ret.ToString();
         }
 
         #endregion
@@ -76,25 +90,34 @@ namespace NFine.Code
         /// <returns></returns> 
         public static string Decrypt(string Text, string sKey)
         {
-            DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-            int len;
-            len = Text.Length / 2;
-            byte[] inputByteArray = new byte[len];
-            int x, i;
-            for (x = 0; x < len; x++)
+            var fullCipher = Convert.FromBase64String(Text);
+
+            var iv = new byte[16];
+            var cipher = new byte[fullCipher.Length - iv.Length];
+
+            Buffer.BlockCopy(fullCipher, 0, iv, 0, iv.Length);
+            Buffer.BlockCopy(fullCipher, iv.Length, cipher, 0, fullCipher.Length - iv.Length);
+            var key = Encoding.UTF8.GetBytes(sKey);
+
+            using (var aesAlg = Aes.Create())
             {
-                i = Convert.ToInt32(Text.Substring(x * 2, 2), 16);
-                inputByteArray[x] = (byte)i;
+                using (var decryptor = aesAlg.CreateDecryptor(key, iv))
+                {
+                    string result;
+                    using (var msDecrypt = new MemoryStream(cipher))
+                    {
+                        using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        {
+                            using (var srDecrypt = new StreamReader(csDecrypt))
+                            {
+                                result = srDecrypt.ReadToEnd();
+                            }
+                        }
+                    }
+
+                    return result;
+                }
             }
-            des.Key = ASCIIEncoding.ASCII.GetBytes( Md5.md5(sKey, 32).Substring(0, 8));
-            // des.Key = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            // des.IV = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            des.IV = ASCIIEncoding.ASCII.GetBytes(Md5.md5(sKey, 32).Substring(0, 8));
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
-            cs.Write(inputByteArray, 0, inputByteArray.Length);
-            cs.FlushFinalBlock();
-            return Encoding.Default.GetString(ms.ToArray());
         }
 
         #endregion
