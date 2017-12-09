@@ -83,9 +83,10 @@ namespace NFine.Data
                 {
                     if (prop.GetValue(entity, null).ToString() == "&nbsp;")
                         dbcontext.Entry(entity).Property(prop.Name).CurrentValue = null;
-                    dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
+                   // dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
                 }
             }
+            dbcontext.Entry<TEntity>(entity).State = EntityState.Modified;
             return dbTransaction == null ? this.Commit() : 0;
         }
         public int Delete<TEntity>(TEntity entity) where TEntity : class
