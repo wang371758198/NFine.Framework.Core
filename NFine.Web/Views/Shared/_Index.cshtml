@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <environment>
+        <link href="~/css/framework-font.css" rel="stylesheet" />
+        <link href="~/css/framework-theme.css" rel="stylesheet" />
+        <script src="~/js/jquery/jquery-2.1.1.min.js"></script>
+        <script src="~/js/bootstrap/bootstrap.js"></script>
+        <link href="~/js/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/js/jqgrid/jqgrid.min.js"></script>
+        <link href="~/js/jqgrid/jqgrid.css" rel="stylesheet" />
+        <script src="~/js/jqgrid/grid.locale-cn.js"></script>
+        <link href="~/css/framework-ui.css" rel="stylesheet" />
+        <script src="~/js/framework-ui.js"></script>
+    </environment>
+</head>
+<body>
+    @RenderBody()
+    @Html.AntiForgeryToken()
+</body>
+</html>

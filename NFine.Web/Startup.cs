@@ -28,12 +28,16 @@ namespace NFine.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            IMvcBuilder mvcBuilder = services.AddMvc();
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
+            });
+            mvcBuilder.AddRazorOptions(options =>
+            {
+                options.ViewLocationExpanders.Add(new NamespaceViewLocationExpander());
             });
         }
 
@@ -65,6 +69,22 @@ namespace NFine.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "ExampleManage",
+                    template: "ExampleManage/{controller}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "ReportManage",
+                    template: "ReportManage/{controller}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                  name: "SystemManage",
+                  template: "SystemManage/{controller}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                 name: "SystemSecurity",
+                 template: "SystemSecurity/{controller}/{action=Index}/{id?}");
             });
         }
     }
