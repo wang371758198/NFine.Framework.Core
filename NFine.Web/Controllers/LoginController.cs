@@ -14,7 +14,7 @@ namespace NFine.Web.Controllers
 {
     public class LoginController : BaseController
     {
-        public IActionResult Index()
+        public override  ActionResult Index()
         {
             return View();
         }
@@ -26,7 +26,7 @@ namespace NFine.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CheckLogin(string username, string password, string code)
+        public async Task<ActionResult> CheckLogin(string username, string password, string code)
         {
             LogEntity logEntity = new LogEntity();
             logEntity.F_ModuleName = "系统登录";
@@ -60,7 +60,7 @@ namespace NFine.Web.Controllers
                     {
                         operatorModel.IsSystem = false;
                     }
-                    OperatorProvider.Provider.AddCurrent(operatorModel);
+                   await  OperatorProvider.Provider.AddCurrent(operatorModel);
                     logEntity.F_Account = userEntity.F_Account;
                     logEntity.F_NickName = userEntity.F_RealName;
                     logEntity.F_Result = true;
@@ -78,6 +78,22 @@ namespace NFine.Web.Controllers
                 new LogApp().WriteDbLog(logEntity);
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> OutLogin()
+        {
+            new LogApp().WriteDbLog(new LogEntity
+            {
+                F_ModuleName = "系统登录",
+                F_Type = DbLogType.Exit.ToString(),
+                F_Account = OperatorProvider.Provider.GetCurrent().UserCode,
+                F_NickName = OperatorProvider.Provider.GetCurrent().UserName,
+                F_Result = true,
+                F_Description = "安全退出系统",
+            });
+           await OperatorProvider.Provider.RemoveCurrent();
+            return RedirectToAction("Index", "Login");
         }
 
         public IActionResult GetConfig()

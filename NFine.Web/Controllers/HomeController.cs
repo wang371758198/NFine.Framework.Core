@@ -5,14 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NFine.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NFine.Web.Controllers
 {
     public class HomeController : BaseController
     {
-      
-        public IActionResult Index()
+
+        [Authorize]
+        public override ActionResult Index()
         {
+            if (!string.IsNullOrWhiteSpace(HttpContext.Request.Query["ReturnUrl"].ToString()))
+            {
+                return Redirect(HttpContext.Request.Query["ReturnUrl"].ToString());
+            }
             return View();
         }
 

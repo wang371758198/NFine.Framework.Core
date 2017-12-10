@@ -35,9 +35,17 @@ namespace NFine.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
             });
+
+            //添加mvc自定义寻址Razor页面地址
             mvcBuilder.AddRazorOptions(options =>
             {
                 options.ViewLocationExpanders.Add(new NamespaceViewLocationExpander());
+            });
+
+            services.AddAuthentication("IdentityCookieAuthenScheme").AddCookie("IdentityCookieAuthenScheme",options =>
+            {
+                options.LoginPath = "/Login/Index";
+                options.Cookie.Name = "AuthCookie";
             });
         }
 
@@ -63,6 +71,8 @@ namespace NFine.Web
             app.UseSession();
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

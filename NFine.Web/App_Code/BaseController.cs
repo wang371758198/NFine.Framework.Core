@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using NFine.Code;
+using NFine.Application.SystemManage;
+using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Web
 {
@@ -67,6 +69,8 @@ namespace NFine.Web
         {
             return Content(new AjaxResult { state = ResultType.error.ToString(), message = message }.ToJson());
         }
+
+       
 
     }
 
