@@ -20,26 +20,29 @@ namespace NFine.Data
         private DbTransaction dbTransaction { get; set; }
         public IRepositoryBase BeginTrans()
         {
+
             DbConnection dbConnection = dbcontext.Database.GetDbConnection();
             if (dbConnection.State == ConnectionState.Closed)
             {
                 dbConnection.Open();
             }
             dbTransaction = dbConnection.BeginTransaction();
-            return this;
+           return this;
         }
         public int Commit()
         {
             try
             {
-                var returnValue = dbcontext.SaveChanges();
                 if (dbTransaction != null)
                 {
                     dbTransaction.Commit();
                 }
+
+                var returnValue = dbcontext.SaveChanges();
+
                 return returnValue;
             }
-            catch (Exception)
+            catch (Exception em)
             {
                 if (dbTransaction != null)
                 {
@@ -83,10 +86,11 @@ namespace NFine.Data
                 {
                     if (prop.GetValue(entity, null).ToString() == "&nbsp;")
                         dbcontext.Entry(entity).Property(prop.Name).CurrentValue = null;
-                   // dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
+                    if (!prop.Name.Equals("F_Id"))
+                        dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
                 }
             }
-            dbcontext.Entry<TEntity>(entity).State = EntityState.Modified;
+           // dbcontext.Entry<TEntity>(entity).State = EntityState.Modified;
             return dbTransaction == null ? this.Commit() : 0;
         }
         public int Delete<TEntity>(TEntity entity) where TEntity : class

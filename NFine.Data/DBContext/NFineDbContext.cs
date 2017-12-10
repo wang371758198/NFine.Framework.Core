@@ -24,7 +24,7 @@ namespace NFine.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["NFineDbContext"]);
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["NFineDbContext"],options=>options.UseRowNumberForPaging());
         }
 
         // public DbSet<UserEntity> UserEntities { get; set; }

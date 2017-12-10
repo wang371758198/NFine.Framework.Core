@@ -41,10 +41,11 @@ namespace NFine.Data
                 {
                     if (prop.GetValue(entity, null).ToString() == "&nbsp;")
                         dbcontext.Entry(entity).Property(prop.Name).CurrentValue = null;
-                  //  dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
+                    if (!prop.Name.Equals("F_Id"))
+                        dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
                 }
             }
-            dbcontext.Entry<TEntity>(entity).State = EntityState.Modified;
+            //dbcontext.Entry<TEntity>(entity).State = EntityState.Modified;
             return dbcontext.SaveChanges();
         }
         public int Delete(TEntity entity)
