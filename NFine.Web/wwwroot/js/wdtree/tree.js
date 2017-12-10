@@ -1,4 +1,4 @@
-(function ($) {
+ï»¿(function ($) {
     $.fn.swapClass = function (c1, c2) {
         return this.removeClass(c1).addClass(c2);
     };
@@ -17,7 +17,7 @@
                 datatype: "json",
                 url: false,
                 param: null,
-                cbiconpath: "/Content/js/wdtree/images/icons/",
+                cbiconpath: "/js/wdtree/images/icons/",
                 icons: ["checkbox_0.png", "checkbox_1.png", "checkbox_2.png"],
                 showcheck: false,
                 oncheckboxclick: false,
@@ -390,7 +390,7 @@
                     async: isAsync,
                     dataType: dfop.datatype,
                     success: callback,
-                    error: function (e) { dialogMsg("·şÎñ¶ËÎ´ÏìÓ¦¡£", -1); }
+                    error: function (e) { dialogMsg("æœåŠ¡ç«¯æœªå“åº”ã€‚", -1); }
                 });
             }
         }
