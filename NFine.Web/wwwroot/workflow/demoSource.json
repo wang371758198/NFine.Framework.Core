@@ -1,0 +1,1519 @@
+﻿{
+    "page": {
+        "showGrid": true,
+        "gridSize": 15,
+        "orientation": "portrait",
+        "height": 1500,
+        "backgroundColor": "transparent",
+        "width": 1250,
+        "padding": 20
+    },
+    "elements": {
+        "15894d19f29f63": {
+            "textBlock": [
+                {
+                    "position": {
+                        "w": "w-20",
+                        "h": "h",
+                        "y": 0,
+                        "x": 10
+                    },
+                    "text": "录入需求"
+                }
+            ],
+            "lineStyle": {},
+            "link": "",
+            "children": [],
+            "parent": "",
+            "attribute": {
+                "linkable": true,
+                "visible": true,
+                "container": false,
+                "rotatable": true,
+                "markerOffset": 5,
+                "collapsable": false,
+                "collapsed": false
+            },
+            "fontStyle": {},
+            "resizeDir": [
+                "tl",
+                "tr",
+                "br",
+                "bl"
+            ],
+            "dataAttributes": [
+                {
+                    "id": "15894d19f29dff",
+                    "category": "default",
+                    "name": "序号",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d19f29abb",
+                    "category": "default",
+                    "name": "名称",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d19f29452",
+                    "category": "default",
+                    "name": "所有者",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d19f2973e",
+                    "category": "default",
+                    "name": "连接",
+                    "value": "",
+                    "type": "link"
+                },
+                {
+                    "id": "15894d19f29385",
+                    "category": "default",
+                    "name": "便笺",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d19f2992b",
+                    "category": "default",
+                    "name": "成本",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d19f296c9",
+                    "category": "default",
+                    "name": "时间",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d19f29968",
+                    "category": "default",
+                    "name": "部门",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d19f29429",
+                    "category": "default",
+                    "name": "输入",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d19f29587",
+                    "category": "default",
+                    "name": "输出",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d19f29032",
+                    "category": "default",
+                    "name": "风险",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d19f2907b",
+                    "category": "default",
+                    "name": "备注",
+                    "value": "",
+                    "type": "string"
+                }
+            ],
+            "shapeStyle": {
+                "alpha": 1
+            },
+            "id": "15894d19f29f63",
+            "anchors": [
+                {
+                    "y": "0",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h/2",
+                    "x": "0"
+                },
+                {
+                    "y": "h/2",
+                    "x": "w"
+                }
+            ],
+            "title": "流程",
+            "category": "flow",
+            "name": "process",
+            "path": [
+                {
+                    "actions": [
+                        {
+                            "action": "move",
+                            "y": "0",
+                            "x": "0"
+                        },
+                        {
+                            "action": "line",
+                            "y": "0",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "0"
+                        },
+                        {
+                            "action": "close"
+                        }
+                    ]
+                }
+            ],
+            "fillStyle": {},
+            "locked": false,
+            "group": "",
+            "props": {
+                "w": 100,
+                "angle": 0,
+                "h": 70,
+                "y": 172,
+                "zindex": 1,
+                "x": 101
+            }
+        },
+        "15894d1f83168": {
+            "textBlock": [
+                {
+                    "position": {
+                        "w": "w-20",
+                        "h": "h",
+                        "y": 0,
+                        "x": 10
+                    },
+                    "text": "状态"
+                }
+            ],
+            "lineStyle": {},
+            "link": "",
+            "children": [],
+            "parent": "",
+            "attribute": {
+                "linkable": true,
+                "visible": true,
+                "container": false,
+                "rotatable": true,
+                "markerOffset": 5,
+                "collapsable": false,
+                "collapsed": false
+            },
+            "fontStyle": {},
+            "resizeDir": [
+                "tl",
+                "tr",
+                "br",
+                "bl"
+            ],
+            "dataAttributes": [
+                {
+                    "id": "15894d1f831fca",
+                    "category": "default",
+                    "name": "序号",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d1f831a04",
+                    "category": "default",
+                    "name": "名称",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d1f8312e3",
+                    "category": "default",
+                    "name": "所有者",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d1f831b1b",
+                    "category": "default",
+                    "name": "连接",
+                    "value": "",
+                    "type": "link"
+                },
+                {
+                    "id": "15894d1f8310dc",
+                    "category": "default",
+                    "name": "便笺",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d1f8310ed",
+                    "category": "default",
+                    "name": "成本",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d1f831f69",
+                    "category": "default",
+                    "name": "时间",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d1f831e9c",
+                    "category": "default",
+                    "name": "部门",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d1f8310b2",
+                    "category": "default",
+                    "name": "输入",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d1f83163b",
+                    "category": "default",
+                    "name": "输出",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d1f831c66",
+                    "category": "default",
+                    "name": "风险",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d1f83125c",
+                    "category": "default",
+                    "name": "备注",
+                    "value": "",
+                    "type": "string"
+                }
+            ],
+            "shapeStyle": {
+                "alpha": 1
+            },
+            "id": "15894d1f83168",
+            "anchors": [
+                {
+                    "y": "0",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h/2",
+                    "x": "0"
+                },
+                {
+                    "y": "h/2",
+                    "x": "w"
+                }
+            ],
+            "title": "判定",
+            "category": "flow",
+            "name": "decision",
+            "path": [
+                {
+                    "actions": [
+                        {
+                            "action": "move",
+                            "y": "h/2",
+                            "x": "0"
+                        },
+                        {
+                            "action": "line",
+                            "y": "0",
+                            "x": "w/2"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h/2",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "w/2"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h/2",
+                            "x": "0"
+                        },
+                        {
+                            "action": "close"
+                        }
+                    ]
+                }
+            ],
+            "fillStyle": {},
+            "locked": false,
+            "group": "",
+            "props": {
+                "w": 90,
+                "angle": 0,
+                "h": 70,
+                "y": 172,
+                "zindex": 2,
+                "x": 310
+            }
+        },
+        "15894d3dab1e5e": {
+            "to": {
+                "id": "15894d283f3925",
+                "angle": 0,
+                "y": 207,
+                "x": 548
+            },
+            "id": "15894d3dab1e5e",
+            "linkerType": "broken",
+            "text": "进行中或者延迟征集期",
+            "lineStyle": {},
+            "name": "linker",
+            "from": {
+                "y": 208,
+                "x": 398
+            },
+            "dataAttributes": [],
+            "locked": false,
+            "points": [
+                {
+                    "y": 208,
+                    "x": 473
+                },
+                {
+                    "y": 207,
+                    "x": 473
+                }
+            ],
+            "group": "",
+            "props": {
+                "zindex": 4
+            }
+        },
+        "15894d6aa61491": {
+            "to": {
+                "id": "15894d1f83168",
+                "angle": 0,
+                "y": 207,
+                "x": 310
+            },
+            "id": "15894d6aa61491",
+            "linkerType": "broken",
+            "text": "",
+            "lineStyle": {},
+            "name": "linker",
+            "from": {
+                "id": "15894d19f29f63",
+                "angle": 3.141592653589793,
+                "y": 207,
+                "x": 201
+            },
+            "dataAttributes": [],
+            "locked": false,
+            "points": [
+                {
+                    "y": 207,
+                    "x": 255.5
+                },
+                {
+                    "y": 207,
+                    "x": 255.5
+                }
+            ],
+            "group": "",
+            "props": {
+                "zindex": 11
+            }
+        },
+        "15894d4e6033cd": {
+            "to": {
+                "id": "15894d4d3e96b4",
+                "angle": 1.5707963267948966,
+                "y": 300,
+                "x": 606
+            },
+            "id": "15894d4e6033cd",
+            "linkerType": "broken",
+            "text": "",
+            "lineStyle": {},
+            "name": "linker",
+            "from": {
+                "id": "15894d283f3925",
+                "angle": 4.71238898038469,
+                "y": 242,
+                "x": 598
+            },
+            "dataAttributes": [],
+            "locked": false,
+            "points": [
+                {
+                    "y": 271,
+                    "x": 598
+                },
+                {
+                    "y": 271,
+                    "x": 606
+                }
+            ],
+            "group": "",
+            "props": {
+                "zindex": 6
+            }
+        },
+        "15894d5d3d9235": {
+            "to": {
+                "id": "15894d5f03f8b",
+                "angle": 3.141592653589793,
+                "y": 335,
+                "x": 250
+            },
+            "id": "15894d5d3d9235",
+            "linkerType": "broken",
+            "text": "暂停",
+            "lineStyle": {},
+            "name": "linker",
+            "from": {
+                "id": "15894d4d3e96b4",
+                "angle": 0,
+                "y": 335,
+                "x": 561
+            },
+            "dataAttributes": [],
+            "locked": false,
+            "points": [
+                {
+                    "y": 335,
+                    "x": 405.5
+                },
+                {
+                    "y": 335,
+                    "x": 405.5
+                }
+            ],
+            "group": "",
+            "props": {
+                "zindex": 9
+            }
+        },
+        "15894d563317f2": {
+            "id": "15894d563317f2",
+            "to": {
+                "id": "15894d54eea197",
+                "y": 447,
+                "angle": 1.5707963267948968,
+                "x": 606
+            },
+            "text": "接受或者部分接受",
+            "linkerType": "broken",
+            "name": "linker",
+            "lineStyle": {},
+            "points": [
+                {
+                    "y": 408.5,
+                    "x": 606
+                },
+                {
+                    "y": 408.5,
+                    "x": 606
+                }
+            ],
+            "locked": false,
+            "dataAttributes": [],
+            "from": {
+                "id": "15894d4d3e96b4",
+                "y": 370,
+                "angle": 4.71238898038469,
+                "x": 606
+            },
+            "group": "",
+            "props": {
+                "zindex": 8
+            }
+        },
+        "15894d710333af": {
+            "textBlock": [
+                {
+                    "position": {
+                        "w": "w-20",
+                        "y": 0,
+                        "h": "h",
+                        "x": 10
+                    },
+                    "text": "需求已经关闭无法处理"
+                }
+            ],
+            "lineStyle": {},
+            "link": "",
+            "children": [],
+            "parent": "",
+            "attribute": {
+                "linkable": true,
+                "visible": true,
+                "container": false,
+                "rotatable": true,
+                "markerOffset": 5,
+                "collapsable": false,
+                "collapsed": false
+            },
+            "fontStyle": {},
+            "resizeDir": [
+                "tl",
+                "tr",
+                "br",
+                "bl"
+            ],
+            "dataAttributes": [
+                {
+                    "id": "15894d71033cad",
+                    "category": "default",
+                    "name": "序号",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d71033eae",
+                    "category": "default",
+                    "name": "名称",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d710336f8",
+                    "category": "default",
+                    "name": "所有者",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d71033b4d",
+                    "category": "default",
+                    "name": "连接",
+                    "value": "",
+                    "type": "link"
+                },
+                {
+                    "id": "15894d71033ebc",
+                    "category": "default",
+                    "name": "便笺",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d71033c89",
+                    "category": "default",
+                    "name": "成本",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d710336c6",
+                    "category": "default",
+                    "name": "时间",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d71033bb7",
+                    "category": "default",
+                    "name": "部门",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d71033dff",
+                    "category": "default",
+                    "name": "输入",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d71033b1d",
+                    "category": "default",
+                    "name": "输出",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d71033a39",
+                    "category": "default",
+                    "name": "风险",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d710338ab",
+                    "category": "default",
+                    "name": "备注",
+                    "value": "",
+                    "type": "string"
+                }
+            ],
+            "shapeStyle": {
+                "alpha": 1
+            },
+            "id": "15894d710333af",
+            "anchors": [
+                {
+                    "y": "0",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h/2",
+                    "x": "0"
+                },
+                {
+                    "y": "h/2",
+                    "x": "w"
+                }
+            ],
+            "category": "flow",
+            "title": "流程",
+            "name": "process",
+            "fillStyle": {},
+            "path": [
+                {
+                    "actions": [
+                        {
+                            "action": "move",
+                            "y": "0",
+                            "x": "0"
+                        },
+                        {
+                            "action": "line",
+                            "y": "0",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "0"
+                        },
+                        {
+                            "action": "close"
+                        }
+                    ]
+                }
+            ],
+            "locked": false,
+            "group": "",
+            "props": {
+                "w": 100,
+                "y": 27,
+                "h": 70,
+                "angle": 0,
+                "x": 305,
+                "zindex": 12
+            }
+        },
+        "15894d54eea197": {
+            "textBlock": [
+                {
+                    "position": {
+                        "w": "w-20",
+                        "y": 0,
+                        "h": "h",
+                        "x": 10
+                    },
+                    "text": "需求处理完成"
+                }
+            ],
+            "lineStyle": {},
+            "link": "",
+            "children": [],
+            "parent": "",
+            "attribute": {
+                "linkable": true,
+                "visible": true,
+                "container": false,
+                "rotatable": true,
+                "markerOffset": 5,
+                "collapsable": false,
+                "collapsed": false
+            },
+            "fontStyle": {},
+            "resizeDir": [
+                "tl",
+                "tr",
+                "br",
+                "bl"
+            ],
+            "dataAttributes": [
+                {
+                    "id": "15894d54eeacd6",
+                    "category": "default",
+                    "name": "序号",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d54eead91",
+                    "category": "default",
+                    "name": "名称",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d54eea034",
+                    "category": "default",
+                    "name": "所有者",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d54eea54",
+                    "category": "default",
+                    "name": "连接",
+                    "value": "",
+                    "type": "link"
+                },
+                {
+                    "id": "15894d54eea7fd",
+                    "category": "default",
+                    "name": "便笺",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d54eea8fe",
+                    "category": "default",
+                    "name": "成本",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d54eea873",
+                    "category": "default",
+                    "name": "时间",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d54eea56",
+                    "category": "default",
+                    "name": "部门",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d54eea002",
+                    "category": "default",
+                    "name": "输入",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d54eeaa75",
+                    "category": "default",
+                    "name": "输出",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d54eea44c",
+                    "category": "default",
+                    "name": "风险",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d54eeaf31",
+                    "category": "default",
+                    "name": "备注",
+                    "value": "",
+                    "type": "string"
+                }
+            ],
+            "shapeStyle": {
+                "alpha": 1
+            },
+            "id": "15894d54eea197",
+            "anchors": [
+                {
+                    "y": "0",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h/2",
+                    "x": "0"
+                },
+                {
+                    "y": "h/2",
+                    "x": "w"
+                }
+            ],
+            "category": "flow",
+            "title": "流程",
+            "name": "process",
+            "fillStyle": {},
+            "path": [
+                {
+                    "actions": [
+                        {
+                            "action": "move",
+                            "y": "0",
+                            "x": "0"
+                        },
+                        {
+                            "action": "line",
+                            "y": "0",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "0"
+                        },
+                        {
+                            "action": "close"
+                        }
+                    ]
+                }
+            ],
+            "locked": false,
+            "group": "",
+            "props": {
+                "w": 100,
+                "y": 447,
+                "h": 70,
+                "angle": 0,
+                "x": 556,
+                "zindex": 7
+            }
+        },
+        "15894d283f3925": {
+            "textBlock": [
+                {
+                    "position": {
+                        "w": "w-20",
+                        "h": "h",
+                        "y": 0,
+                        "x": 10
+                    },
+                    "text": "上级部门处理"
+                }
+            ],
+            "lineStyle": {},
+            "link": "",
+            "children": [],
+            "parent": "",
+            "attribute": {
+                "linkable": true,
+                "visible": true,
+                "container": false,
+                "rotatable": true,
+                "markerOffset": 5,
+                "collapsable": false,
+                "collapsed": false
+            },
+            "fontStyle": {},
+            "resizeDir": [
+                "tl",
+                "tr",
+                "br",
+                "bl"
+            ],
+            "dataAttributes": [
+                {
+                    "id": "15894d283f46ed",
+                    "category": "default",
+                    "name": "序号",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d283f46f6",
+                    "category": "default",
+                    "name": "名称",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d283f4425",
+                    "category": "default",
+                    "name": "所有者",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d283f4d6d",
+                    "category": "default",
+                    "name": "连接",
+                    "value": "",
+                    "type": "link"
+                },
+                {
+                    "id": "15894d283f4f4b",
+                    "category": "default",
+                    "name": "便笺",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d283f4cdf",
+                    "category": "default",
+                    "name": "成本",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d283f4f2c",
+                    "category": "default",
+                    "name": "时间",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d283f44c2",
+                    "category": "default",
+                    "name": "部门",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d283f4ed9",
+                    "category": "default",
+                    "name": "输入",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d283f44b1",
+                    "category": "default",
+                    "name": "输出",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d283f44a2",
+                    "category": "default",
+                    "name": "风险",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d283f4f4d",
+                    "category": "default",
+                    "name": "备注",
+                    "value": "",
+                    "type": "string"
+                }
+            ],
+            "shapeStyle": {
+                "alpha": 1
+            },
+            "id": "15894d283f3925",
+            "anchors": [
+                {
+                    "y": "0",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h/2",
+                    "x": "0"
+                },
+                {
+                    "y": "h/2",
+                    "x": "w"
+                }
+            ],
+            "title": "流程",
+            "category": "flow",
+            "name": "process",
+            "path": [
+                {
+                    "actions": [
+                        {
+                            "action": "move",
+                            "y": "0",
+                            "x": "0"
+                        },
+                        {
+                            "action": "line",
+                            "y": "0",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "0"
+                        },
+                        {
+                            "action": "close"
+                        }
+                    ]
+                }
+            ],
+            "fillStyle": {},
+            "locked": false,
+            "group": "",
+            "props": {
+                "w": 100,
+                "angle": 0,
+                "h": 70,
+                "y": 172,
+                "zindex": 3,
+                "x": 548
+            }
+        },
+        "15894d7acca76": {
+            "id": "15894d7acca76",
+            "to": {
+                "id": "15894d710333af",
+                "y": 97,
+                "angle": 4.71238898038469,
+                "x": 355
+            },
+            "text": "关闭",
+            "linkerType": "broken",
+            "name": "linker",
+            "lineStyle": {},
+            "points": [
+                {
+                    "y": 134.5,
+                    "x": 355
+                },
+                {
+                    "y": 134.5,
+                    "x": 355
+                }
+            ],
+            "locked": false,
+            "dataAttributes": [],
+            "from": {
+                "id": "15894d1f83168",
+                "y": 172,
+                "angle": 1.5707963267948966,
+                "x": 355
+            },
+            "group": "",
+            "props": {
+                "zindex": 13
+            }
+        },
+        "15894d5f03f8b": {
+            "textBlock": [
+                {
+                    "position": {
+                        "w": "w-20",
+                        "y": 0,
+                        "h": "h",
+                        "x": 10
+                    },
+                    "text": "修改重新录入或者其它处理"
+                }
+            ],
+            "lineStyle": {},
+            "link": "",
+            "children": [],
+            "parent": "",
+            "attribute": {
+                "linkable": true,
+                "visible": true,
+                "container": false,
+                "rotatable": true,
+                "markerOffset": 5,
+                "collapsable": false,
+                "collapsed": false
+            },
+            "fontStyle": {},
+            "resizeDir": [
+                "tl",
+                "tr",
+                "br",
+                "bl"
+            ],
+            "dataAttributes": [
+                {
+                    "id": "15894d5f03fcd7",
+                    "category": "default",
+                    "name": "序号",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d5f03f9bf",
+                    "category": "default",
+                    "name": "名称",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d5f03fe19",
+                    "category": "default",
+                    "name": "所有者",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d5f03f464",
+                    "category": "default",
+                    "name": "连接",
+                    "value": "",
+                    "type": "link"
+                },
+                {
+                    "id": "15894d5f03f2dd",
+                    "category": "default",
+                    "name": "便笺",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d5f03fb99",
+                    "category": "default",
+                    "name": "成本",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d5f03f6bf",
+                    "category": "default",
+                    "name": "时间",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d5f03f922",
+                    "category": "default",
+                    "name": "部门",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d5f03f511",
+                    "category": "default",
+                    "name": "输入",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d5f03fb62",
+                    "category": "default",
+                    "name": "输出",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d5f03fdc3",
+                    "category": "default",
+                    "name": "风险",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d5f03fc28",
+                    "category": "default",
+                    "name": "备注",
+                    "value": "",
+                    "type": "string"
+                }
+            ],
+            "shapeStyle": {
+                "alpha": 1
+            },
+            "id": "15894d5f03f8b",
+            "anchors": [
+                {
+                    "y": "0",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h/2",
+                    "x": "0"
+                },
+                {
+                    "y": "h/2",
+                    "x": "w"
+                }
+            ],
+            "category": "flow",
+            "title": "流程",
+            "name": "process",
+            "fillStyle": {},
+            "path": [
+                {
+                    "actions": [
+                        {
+                            "action": "move",
+                            "y": "0",
+                            "x": "0"
+                        },
+                        {
+                            "action": "line",
+                            "y": "0",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "0"
+                        },
+                        {
+                            "action": "close"
+                        }
+                    ]
+                }
+            ],
+            "locked": false,
+            "group": "",
+            "props": {
+                "w": 100,
+                "y": 300,
+                "h": 70,
+                "angle": 0,
+                "x": 150,
+                "zindex": 10
+            }
+        },
+        "15894d4d3e96b4": {
+            "textBlock": [
+                {
+                    "position": {
+                        "w": "w-20",
+                        "y": 0,
+                        "h": "h",
+                        "x": 10
+                    },
+                    "text": "意见反馈"
+                }
+            ],
+            "lineStyle": {},
+            "link": "",
+            "children": [],
+            "parent": "",
+            "attribute": {
+                "linkable": true,
+                "visible": true,
+                "container": false,
+                "rotatable": true,
+                "markerOffset": 5,
+                "collapsable": false,
+                "collapsed": false
+            },
+            "fontStyle": {},
+            "resizeDir": [
+                "tl",
+                "tr",
+                "br",
+                "bl"
+            ],
+            "dataAttributes": [
+                {
+                    "id": "15894d4d3e9291",
+                    "category": "default",
+                    "name": "序号",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d4d3e9295",
+                    "category": "default",
+                    "name": "名称",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d4d3e975e",
+                    "category": "default",
+                    "name": "所有者",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d4d3e9a8d",
+                    "category": "default",
+                    "name": "连接",
+                    "value": "",
+                    "type": "link"
+                },
+                {
+                    "id": "15894d4d3e92c7",
+                    "category": "default",
+                    "name": "便笺",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d4d3e9c26",
+                    "category": "default",
+                    "name": "成本",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d4d3e97c",
+                    "category": "default",
+                    "name": "时间",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "id": "15894d4d3e9e3f",
+                    "category": "default",
+                    "name": "部门",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d4d3e9257",
+                    "category": "default",
+                    "name": "输入",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d4d3e937f",
+                    "category": "default",
+                    "name": "输出",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d4d3e9aaf",
+                    "category": "default",
+                    "name": "风险",
+                    "value": "",
+                    "type": "string"
+                },
+                {
+                    "id": "15894d4d3e9569",
+                    "category": "default",
+                    "name": "备注",
+                    "value": "",
+                    "type": "string"
+                }
+            ],
+            "shapeStyle": {
+                "alpha": 1
+            },
+            "id": "15894d4d3e96b4",
+            "anchors": [
+                {
+                    "y": "0",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h",
+                    "x": "w/2"
+                },
+                {
+                    "y": "h/2",
+                    "x": "0"
+                },
+                {
+                    "y": "h/2",
+                    "x": "w"
+                }
+            ],
+            "category": "flow",
+            "title": "判定",
+            "name": "decision",
+            "fillStyle": {},
+            "path": [
+                {
+                    "actions": [
+                        {
+                            "action": "move",
+                            "y": "h/2",
+                            "x": "0"
+                        },
+                        {
+                            "action": "line",
+                            "y": "0",
+                            "x": "w/2"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h/2",
+                            "x": "w"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h",
+                            "x": "w/2"
+                        },
+                        {
+                            "action": "line",
+                            "y": "h/2",
+                            "x": "0"
+                        },
+                        {
+                            "action": "close"
+                        }
+                    ]
+                }
+            ],
+            "locked": false,
+            "group": "",
+            "props": {
+                "w": 90,
+                "y": 300,
+                "h": 70,
+                "angle": 0,
+                "x": 561,
+                "zindex": 5
+            }
+        }
+    }
+}
