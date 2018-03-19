@@ -1,4 +1,4 @@
-# Fine.Framework.Core
+# NFine.Framework.Core
 asp.net core 管理系统框架
 
 ### Docker 
