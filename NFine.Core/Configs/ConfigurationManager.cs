@@ -11,6 +11,17 @@ namespace NFine.Code
         private static IConfiguration config;
 
         /// <summary>
+        /// Redis链接参数
+        /// </summary>
+        public static IConfigurationSection Redis
+        {
+            get
+            {
+                return config.GetSection("redis");
+            }
+        }
+
+        /// <summary>
         /// 获取appsettings.json 中appSettings配置
         /// </summary>
         public static IConfigurationSection AppSettings
