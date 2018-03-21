@@ -6,6 +6,9 @@ using System.Net;
 
 namespace NFine.Code
 {
+    /// <summary>
+    /// redis使用类
+    /// </summary>
    public static class RedisHelper
     {
 
