@@ -24,7 +24,7 @@ namespace NFine.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            Console.WriteLine("ConfigurationManager.ConnectionStrings[\"NFineDbContext\"]:{0}", ConfigurationManager.ConnectionStrings["NFineDbContext"]);
+            //Console.WriteLine("ConfigurationManager.ConnectionStrings[\"NFineDbContext\"]:{0}", ConfigurationManager.ConnectionStrings["NFineDbContext"]);
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["NFineDbContext"],options=>options.UseRowNumberForPaging());
         }
 
@@ -33,14 +33,14 @@ namespace NFine.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             string currentAssembleFileName = Assembly.GetExecutingAssembly().CodeBase.ToString();
-            Console.WriteLine("currentAssembleFileName:" + currentAssembleFileName);
+            //Console.WriteLine("currentAssembleFileName:" + currentAssembleFileName);
             string assembleFileName = currentAssembleFileName.Replace(".Data.", ".Mapping.").Replace("file:///","");
 
-            Console.WriteLine(" pre assembleFileName Path: " + assembleFileName);
+            //Console.WriteLine(" pre assembleFileName Path: " + assembleFileName);
 
             if (assembleFileName.IndexOf(":") == -1)
                 assembleFileName = @"/" + assembleFileName;
-            Console.WriteLine("assembleFileName Path: " + assembleFileName);
+            //Console.WriteLine("assembleFileName Path: " + assembleFileName);
             Assembly asm = Assembly.LoadFile(assembleFileName);
             var typesToRegister = asm.GetTypes()
             .Where(type => !String.IsNullOrEmpty(type.Namespace))
