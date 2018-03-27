@@ -24,8 +24,8 @@
                 NFine.Core平台介绍
             </div>
             <div class="panel-body">
-                <p>使用时请务必保留来源，请勿用于违反我国法律的web平台、如诈骗等非法平台网站。版权最终解释权归《NFine团队》所有</p>
-                <p>NFine是一套基于ASP.NET MVC+EF6+Bootstrap开发出来的框架，源代码完全开源，可以帮助你解决C#.NET项目68%的重复工作，让开发人员远离加班！</p>
+                <p>使用时请务必保留来源，请勿用于违反我国法律的web平台、如诈骗等非法平台网站。版权最终解释权归《NFine Core作者》所有</p>
+                <p>NFine是一套基于ASP.NET Core MVC+EF Core +Bootstrap开发出来的框架，源代码完全开源，可以帮助你解决C#.NET项目68%的重复工作，让开发人员远离加班！</p>
                 <p>使用 Apache License 2.0 协议，采用主流框架，容易上手，简单易学，学习成本低。可完全实现二次开发、基本满足80%项目需求。</p>
                 <p>可以帮助解决.NET项目70%的重复工作，让开发更多关注业务逻辑。既能快速提高开发效率，帮助公司节省人力成本，同时又不失灵活性。</p>
                 <p>支持SQLServer、MySQL、Oracle、SQLite、Access 等多数据库类型。模块化设计，层次结构清晰。内置一系列企业信息管理的基础功能。</p>
@@ -39,7 +39,7 @@
     <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
         <div class="panel panel-default">
             <div class="panel-heading">
-                NFine技术介绍
+                NFine Core技术介绍
             </div>
             <div class="panel-body" style="overflow: hidden;">
                 <div style="float: left; width: 50%;">
@@ -60,13 +60,13 @@
                 </div>
                 <div style="float: left; width: 50%;">
                     <p>2、后端技术</p>
-                    <p>核心框架：ASP.NET MVC5、WEB API</p>
-                    <p>持久层框架：EntityFramework 6.0</p>
-                    <p>定时计划任务：Quartz.Net组件</p>
+                    <p>核心框架：ASP.NET Core</p>
+                    <p>持久层框架：EntityFramework Core</p>
+                    <p>定时计划任务：Quartz.Net Core组件</p>
                     <p>安全支持：过滤器、Sql注入、请求伪造</p>
                     <p>服务端验证：实体模型验证、自己封装Validator</p>
                     <p>缓存框架：微软自带Cache、Redis</p>
-                    <p>日志管理：Log4net、登录日志、操作日志</p>
+                    <p>日志管理：NLog、登录日志、操作日志</p>
                     <p>工具类：NPOI、Newtonsoft.Json、验证码、丰富公共类似</p>
                 </div>
             </div>
@@ -84,9 +84,9 @@
                 </p>
                 <p>
                     向我提问：欢迎向我提问，由于个人精力有限，并不是每一个问题都会去回答；邮箱地址：
-                    <a href="#">NFine_2016@163.com</a>
+                    <a href="#">371758198@qq.com</a>
                 </p>
-                <p>获取最新源代码：<a href="http://www.oschina.net/p/nfine" target="_blank">http://www.oschina.net/p/nfine</a>、作者QQ：2717247167、技术交流群：549652099</p>
+                <p>获取最新源代码：<a href="https://github.com/wang371758198" target="_blank">https://github.com/wang371758198</a>、作者微信:qiqi8212</p>
             </div>
         </div>
     </div>
@@ -94,7 +94,7 @@
         <div style="margin-bottom: 5px;">
             扫描二维码，添加我的微信号
         </div>
-        <img src="~/img/weixin_nfine.png" style="width: 150px;" alt="微信号" />
+        <img src="~/img/weixin_nfine.jpg" style="width: 150px;" alt="微信号" />
     </div>
     <div class="contentpay">
         <div class="hide_box"></div>
@@ -106,7 +106,7 @@
                 <p>感谢您的支持，我会继续努力的!</p>
             </div>
             <div class="shang_payimg">
-                <img src="~/img/weipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="~/img/weipayimg.jpg" alt="扫码支持" title="扫一扫" />
             </div>
             <div class="pay_explain">扫码打赏，你说多少就多少</div>
             <div class="shang_payselect">
@@ -132,8 +132,9 @@
         $(function () {
             $(".pay_item").click(function () {
                 $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+                debugger;
                 var dataid = $(this).attr('data-id');
-                $(".shang_payimg img").attr("src", "/Content/img/" + dataid + "img.png");
+                $(".shang_payimg img").attr("src", "/img/" + dataid + "img.jpg");
                 $("#shang_pay_txt").text(dataid == "alipay" ? "支付宝" : "微信");
             });
         });

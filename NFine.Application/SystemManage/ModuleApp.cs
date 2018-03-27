@@ -11,6 +11,7 @@ using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace NFine.Application.SystemManage
 {
@@ -20,7 +21,10 @@ namespace NFine.Application.SystemManage
 
         public List<ModuleEntity> GetList()
         {
-            return service.IQueryable().OrderBy(t => t.F_SortCode).ToList();
+            var expression = ExtLinq.True<ModuleEntity>();
+            if (!HttpContext.Current.Request.Headers["Referer"].ToString().Contains("SystemManage/Module/Index"))
+                expression = expression.And(_ => _.F_EnabledMark == true);
+            return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
         public ModuleEntity GetForm(string keyValue)
         {
