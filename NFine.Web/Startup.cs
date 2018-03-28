@@ -59,7 +59,8 @@ namespace NFine.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/Home/Error");
+                app.UseMiddleware<NFine.Code.Middleware.ExceptionHandlerMiddleware>();
             }
 
             ///注册全局先上问关联的HttpContext

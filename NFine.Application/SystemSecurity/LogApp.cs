@@ -88,7 +88,7 @@ namespace NFine.Application.SystemSecurity
         {
             logEntity.F_Id = Common.GuId();
             logEntity.F_Date = DateTime.Now;
-            logEntity.F_IPAddress = "117.81.192.182";
+            logEntity.F_IPAddress =  System.Web.HttpContext.Current?.Connection?.RemoteIpAddress?.ToString();
             logEntity.F_IPAddressName = Net.GetLocation(logEntity.F_IPAddress);
             logEntity.Create();
             service.Insert(logEntity);

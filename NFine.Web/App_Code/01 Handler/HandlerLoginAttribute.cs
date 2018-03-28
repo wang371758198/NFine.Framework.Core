@@ -15,7 +15,7 @@ namespace NFine.Web
         {
             if (OperatorProvider.Provider.GetCurrent() == null)
             {
-                WebHelper.WriteCookie("nfine_login_error", "overdue");
+                WebHelper.WriteCookie("AuthCookie", "");
                 HttpContext.Current.Response.Redirect("/Login/Index");
             }
         }

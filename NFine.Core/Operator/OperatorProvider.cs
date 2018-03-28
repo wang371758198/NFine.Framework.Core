@@ -29,6 +29,12 @@ namespace NFine.Code
             }
             return operatorModel;
         }
+
+        /// <summary>
+        /// 设置当前登录用户的信息
+        /// </summary>
+        /// <param name="operatorModel"></param>
+        /// <returns></returns>
         public async Task  AddCurrent(OperatorModel operatorModel)
         {
             //if (LoginProvider == "Cookie")
@@ -49,7 +55,7 @@ namespace NFine.Code
 
             await HttpContext.Current.SignInAsync("IdentityCookieAuthenScheme", principal, new AuthenticationProperties()
             {
-                ExpiresUtc = DateTime.UtcNow.AddMinutes(30)
+                ExpiresUtc = DateTime.UtcNow.AddMinutes(30)//设置登录的Cookie的有效期时间
             });
 
         }
