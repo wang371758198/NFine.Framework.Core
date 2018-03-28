@@ -39,6 +39,20 @@
             }
         })
     }
+
+    function iconList() {
+        $.modalOpen({
+            id: "IconList",
+            title: "图标",
+            url: "/SystemManage/Module/IconList",
+            width: "700px",
+            height: "400px",
+            callBack: function (iframeId) {
+                var className = top.frames[iframeId].getClassName();
+                $('#F_Icon').val(className);
+            }
+        });
+    }
 </script>
 <form id="form1">
     <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
@@ -81,7 +95,7 @@
                     <td class="formValue">
                         <div class="input-group">
                             <input id="F_Icon" name="F_Icon" type="text" class="form-control">
-                            <span class="input-group-btn">
+                            <span class="input-group-btn" onclick="iconList()">
                                 <a class="btn  btn-primary"><i class="fa fa-ellipsis-h"></i></a>
                             </span>
                         </div>

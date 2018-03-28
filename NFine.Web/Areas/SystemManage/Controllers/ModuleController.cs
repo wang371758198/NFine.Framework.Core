@@ -74,5 +74,10 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             moduleApp.DeleteForm(keyValue);
             return Success("删除成功。");
         }
+
+        public ActionResult IconList()
+        {
+            return View();
+        }
     }
 }
