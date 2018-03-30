@@ -21,6 +21,14 @@ namespace NFine.Code
             }
         }
 
+        public static IConfigurationSection UEditor
+        {
+            get
+            {
+                return config.GetSection("ueditor");
+            }
+        }
+
         /// <summary>
         /// 获取appsettings.json 中appSettings配置
         /// </summary>

@@ -14,6 +14,8 @@ namespace NFine.Web
     {
         public Startup(IHostingEnvironment env)
         {
+           // System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -64,7 +66,7 @@ namespace NFine.Web
             }
 
             ///注册全局先上问关联的HttpContext
-            System.Web.HttpContext.Configure(app.ApplicationServices.GetRequiredService<Microsoft.AspNetCore.Http.IHttpContextAccessor>());
+            System.Web.HttpContext.Configure(app.ApplicationServices.GetRequiredService<Microsoft.AspNetCore.Http.IHttpContextAccessor>(),env);
 
             //注册全局Configuration对象
             NFine.Code.ConfigurationManager.Configure(Configuration);
