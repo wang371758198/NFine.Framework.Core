@@ -13,7 +13,7 @@ namespace NFine.Web.Controllers
     public class HomeController : BaseController
     {
 
-        [Authorize]
+       // [Authorize]
         public override ActionResult Index()
         {
             if (!string.IsNullOrWhiteSpace(HttpContext.Request.Query["ReturnUrl"].ToString()))

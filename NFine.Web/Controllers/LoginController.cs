@@ -12,9 +12,9 @@ using NFine.Application.SystemSecurity;
 
 namespace NFine.Web.Controllers
 {
-    public class LoginController : BaseController
+    public class LoginController : Controller
     {
-        public override  ActionResult Index()
+        public   ActionResult Index()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace NFine.Web.Controllers
             logEntity.F_Type = DbLogType.Login.ToString();
             try
             {
-                if (Session["nfine_session_verifycode"].IsEmpty() || Md5.md5(code.ToLower(), 16) != Session["nfine_session_verifycode"].ToString())
+                if (NFine.Code.WebHelper.GetSession("nfine_session_verifycode").IsEmpty() || Md5.md5(code.ToLower(), 16) != NFine.Code.WebHelper.GetSession("nfine_session_verifycode").ToString())
                 {
                     throw new Exception("验证码错误，请重新输入");
                 }

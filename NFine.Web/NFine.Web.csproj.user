@@ -11,5 +11,6 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <ShowAllFiles>false</ShowAllFiles>
+    <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_Index.cshtml</WebStackScaffolding_LayoutPageFile>
   </PropertyGroup>
 </Project>

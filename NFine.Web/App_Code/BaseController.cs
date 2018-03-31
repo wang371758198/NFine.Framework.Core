@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using NFine.Code;
 using NFine.Application.SystemManage;
 using NFine.Domain.Entity.SystemManage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NFine.Web
 {
@@ -22,8 +23,10 @@ namespace NFine.Web
         }
     }
 
+    [Authorize]
     public class BaseController : Controller
     {
+       
         public BaseController()
         {
             this.Session = new Session();
@@ -40,7 +43,7 @@ namespace NFine.Web
         //}
 
         [HttpGet]
-       // [HandlerAuthorize]
+        // [HandlerAuthorize]
         public virtual ActionResult Index()
         {
             return View();

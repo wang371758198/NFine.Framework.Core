@@ -10,7 +10,7 @@ namespace NFine.Domain
             var entity = this as ICreationAudited;
             entity.F_Id = Common.GuId();
             var LoginInfo = OperatorProvider.Provider.GetCurrent();
-            if (LoginInfo != null)
+            if (LoginInfo != null && !string.IsNullOrWhiteSpace(LoginInfo.UserName) && !string.IsNullOrWhiteSpace(LoginInfo.UserId))
             {
                 entity.F_CreatorUserId = LoginInfo.UserId;
                 entity.F_CreatorUserName = LoginInfo.UserName;

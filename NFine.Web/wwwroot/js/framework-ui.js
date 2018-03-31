@@ -428,3 +428,46 @@ $.fn.dataGrid = function (options) {
     };
     $element.jqGrid(options);
 };
+$.currentTabClose = function () {
+    top.$('.menuTabs .menuTab.active i').trigger('click');
+}
+$.addTab = function (id, url, title) {
+    var dataId = id;
+
+    var dataUrl = url;
+    var menuName = title;
+    var flag = true;
+    if (dataUrl == undefined || $.trim(dataUrl).length == 0) {
+        return false;
+    }
+    top.$('.menuTab').each(function () {
+        if ($(this).data('id') == dataUrl) {
+            if (!$(this).hasClass('active')) {
+                top.$(this).addClass('active').siblings('.menuTab').removeClass('active');
+                top.$.nfinetab.scrollToTab(this);
+                top.$('.mainContent .NFine_iframe').each(function () {
+                    if ($(this).data('id') == dataUrl) {
+                        $(this).show().siblings('.NFine_iframe').hide();
+                        return false;
+                    }
+                });
+            }
+            flag = false;
+            return false;
+        }
+    });
+    if (flag) {
+        var str = '<a href="javascript:;" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-remove"></i></a>';
+        top.$('.menuTab').removeClass('active');
+        var str1 = '<iframe class="NFine_iframe" id="iframe' + dataId + '" name="iframe' + dataId + '"  width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" seamless></iframe>';
+        top.$('.mainContent').find('iframe.NFine_iframe').hide();
+        top.$('.mainContent').append(str1);
+        top.$.loading(true);
+        top.$('.mainContent iframe:visible').load(function () {
+            $.loading(false);
+        });
+        top.$('.menuTabs .page-tabs-content').append(str);
+        top.$.nfinetab.scrollToTab($('.menuTab.active'));
+    }
+    return false;
+}

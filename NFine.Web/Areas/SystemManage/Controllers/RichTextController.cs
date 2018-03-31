@@ -5,12 +5,56 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using NFine.Application.SystemManage;
+using NFine.Code;
+using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class RichTextController : BaseController
     {
-        
+        private  NewInfoApp app = new NewInfoApp();
+
+        public IActionResult List()
+        {
+            return View();
+        }
+
+       
+        public IActionResult SubmitForm(NewsInfoEntity newsInfoEntity,string keyValue)
+        {
+            app.SubmitForm(newsInfoEntity, keyValue);
+            return Success("操作成功。");
+        }
+
+        public IActionResult GetForm(string keyValue)
+        {
+            if (string.IsNullOrWhiteSpace(keyValue))
+                return Content("null");
+            return Content(app.GetForm(keyValue).ToJson());
+        }
+
+
+        public IActionResult DeleteForm(string keyValue)
+        {
+            if (string.IsNullOrWhiteSpace(keyValue))
+                return Success("数据实体不存在。");
+
+            app.DeleteForm(keyValue);
+            return Success("删除成功。");
+        }
+
+        public ActionResult GetGridJson(Pagination pagination, string keyword)
+        {
+            var data = new
+            {
+                rows = app.GetList(pagination,keyword),
+                total = pagination.total,
+                page = pagination.page,
+                records = pagination.records
+            };
+           
+            return Content(data.ToJson());
+        }
 
         public void UEditor()
         {
