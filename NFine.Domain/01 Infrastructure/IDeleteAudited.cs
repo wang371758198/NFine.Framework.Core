@@ -1,10 +1,4 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System;
+﻿using System;
 
 namespace NFine.Domain
 {
@@ -23,6 +17,8 @@ namespace NFine.Domain
         /// <summary>
         /// 删除实体时间
         /// </summary>
-        DateTime? F_DeleteTime { get; set; } 
+        DateTime? F_DeleteTime { get; set; }
+
+        string F_DeleteUserName { get; set; }
     }
 }

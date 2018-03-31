@@ -1,10 +1,4 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Code;
+﻿using NFine.Code;
 using System;
 
 namespace NFine.Domain
@@ -19,8 +13,10 @@ namespace NFine.Domain
             if (LoginInfo != null)
             {
                 entity.F_CreatorUserId = LoginInfo.UserId;
+                entity.F_CreatorUserName = LoginInfo.UserName;
             }
             entity.F_CreatorTime = DateTime.Now;
+            
         }
         public void Modify(string keyValue)
         {
@@ -30,6 +26,7 @@ namespace NFine.Domain
             if (LoginInfo != null)
             {
                 entity.F_LastModifyUserId = LoginInfo.UserId;
+                entity.F_LastModifyUserName = LoginInfo.UserName;
             }
             entity.F_LastModifyTime = DateTime.Now;
         }
@@ -40,6 +37,7 @@ namespace NFine.Domain
             if (LoginInfo != null)
             {
                 entity.F_DeleteUserId = LoginInfo.UserId;
+                entity.F_DeleteUserName = LoginInfo.UserName;
             }
             entity.F_DeleteTime = DateTime.Now;
             entity.F_DeleteMark = true;

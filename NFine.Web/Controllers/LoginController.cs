@@ -65,6 +65,8 @@ namespace NFine.Web.Controllers
                     logEntity.F_NickName = userEntity.F_RealName;
                     logEntity.F_Result = true;
                     logEntity.F_Description = "登录成功";
+                    logEntity.F_CreatorUserId = operatorModel.UserId;
+                    logEntity.F_CreatorUserName = operatorModel.UserName;
                     new LogApp().WriteDbLog(logEntity);
                 }
                 return Content(new AjaxResult { state = ResultType.success.ToString(), message = "登录成功。" }.ToJson());
@@ -75,6 +77,8 @@ namespace NFine.Web.Controllers
                 logEntity.F_NickName = username;
                 logEntity.F_Result = false;
                 logEntity.F_Description = "登录失败，" + ex.Message;
+                logEntity.F_CreatorUserId = username;
+                logEntity.F_CreatorUserName = username;
                 new LogApp().WriteDbLog(logEntity);
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
