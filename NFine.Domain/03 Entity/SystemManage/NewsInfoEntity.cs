@@ -25,5 +25,7 @@ namespace NFine.Domain.Entity.SystemManage
         public string F_Content { get; set; }
 
         public bool F_Status { get; set; }
+
+        public int F_Type { get; set; }
     }
 }

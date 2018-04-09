@@ -34,11 +34,15 @@
             <tr>
                 <th class="formTitle" style="width:5%;">标 题</th>
                 <td class="formValue">
-                    <input type="text" id="F_Title" name="F_Title" class="form-control required" style="width:90%;" />
+                    <input type="text" id="F_Title" name="F_Title" class="form-control required" style="width:95%;" />
                 </td>
                 <th class="formTitle" style="width:5%;"> 发布人 </th>
                 <td class="formValue">
-                    <input type="text" id="F_Spokesman" name="F_Spokesman" class="form-control required" style="width:90%;" value="@NFine.Code.OperatorProvider.Provider.GetCurrent().UserName" />
+                    <input type="text" id="F_Spokesman" name="F_Spokesman" class="form-control required" style="width:95%;" value="@NFine.Code.OperatorProvider.Provider.GetCurrent().UserName" />
+                </td>
+                <th class="formTitle" style="width:5%">文章类型:</th>
+                <td class="formValue">
+                    <select id="F_Type" name="F_Type" class="form-control" style="width:88%;height:20px;"></select>
                 </td>
             </tr>
         </table>
@@ -89,6 +93,12 @@
 
     $(function () {
 
+        $("#F_Type").bindSelect({
+            url: "/SystemManage/ItemsData/GetListEnCode?enCode=NewsType",
+            id: "F_ItemCode",
+            text: "F_ItemName"
+        });
+
         if (keyValue) {
 
             $.ajax({
@@ -99,6 +109,7 @@
                 if (data) {
                     $('#F_Title').val(data.F_Title);
                     $('#F_Spokesman').val(data.F_Spokesman);
+                    $('#F_Type').val(data.F_Type);
                     ue.ready(function () {
                         ue.setContent(data.F_Content);
                     });

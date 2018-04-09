@@ -4,6 +4,7 @@ using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace NFine.Web.Areas.SystemManage.Controllers
 {
@@ -18,6 +19,16 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             var data = itemsDetailApp.GetList(itemId, keyword);
             return Content(data.ToJson());
         }
+
+        public ActionResult GetListEnCode(string enCode)
+        {
+            if (string.IsNullOrWhiteSpace(enCode))
+                throw new ArgumentNullException("enCode");
+
+            var data = itemsDetailApp.GetListEnCode(enCode);
+            return Content(data.ToJson());
+        }
+
         [HttpGet]
         //[HandlerAjaxOnly]
         public ActionResult GetSelectJson(string enCode)

@@ -10,6 +10,7 @@ namespace NFine.Application.SystemManage
     public class ItemsDetailApp
     {
         private IItemsDetailRepository service = new ItemsDetailRepository();
+        private IItemsRepository itemsService = new ItemsRepository();
 
         public List<ItemsDetailEntity> GetList(string itemId = "", string keyword = "")
         {
@@ -25,6 +26,19 @@ namespace NFine.Application.SystemManage
             }
             return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
+
+        public List<ItemsDetailEntity> GetListEnCode(string enCode)
+        {
+            var expression = ExtLinq.True<ItemsDetailEntity>();
+            var parentEntity = itemsService.FindEntity(_ => _.F_EnCode == enCode);
+            if (parentEntity != null)
+            {
+                return GetList(parentEntity.F_Id);
+            }
+            else
+                return null;
+        }
+
         public List<ItemsDetailEntity> GetItemList(string enCode)
         {
             return service.GetItemList(enCode);
