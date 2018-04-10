@@ -120,5 +120,25 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             action.Process();
            
         }
+
+        public IActionResult Preview(string keyValue)
+        {
+            if (string.IsNullOrWhiteSpace(keyValue))
+                return Content("null");
+            return View(app.GetForm(keyValue));
+        }
+
+
+        public IActionResult GetNewsInfoList(int type, int topNumber = 8)
+        {
+            var list = app.GetList(type, topNumber);
+            list?.ForEach(_ =>
+            {
+                if (_.F_Title.Length > 15)
+                    _.F_Title = _.F_Title.Substring(0, 15) + "...";
+            });
+            return Content(list?.ToJson());
+        }
+
     }
 }

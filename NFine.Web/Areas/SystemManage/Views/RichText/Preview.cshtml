@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model  NFine.Domain.Entity.SystemManage.NewsInfoEntity;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@(Model.F_Title) </title>
+</head>
+<body>
+    @(new  Microsoft.AspNetCore.Html.HtmlString(Model.F_Content))
+</body>
+</html>

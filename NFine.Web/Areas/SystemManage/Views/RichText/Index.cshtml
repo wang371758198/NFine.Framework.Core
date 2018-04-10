@@ -73,10 +73,12 @@
             return false;
         }
         $('#F_Content').val(UE.getEditor('editor').getContent());
-       
+        var form = $("#form1").formSerialize();
+        form.F_Status = status;
+
         $.submitForm({
             url: "/SystemManage/RichText/SubmitForm?keyValue=" + keyValue,
-            param: $("#form1").formSerialize(),
+            param: form,
             success: function (data) {
                 if (data.state == "success") {
                     $.modalMsg(data.message, data.state);

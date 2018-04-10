@@ -54,11 +54,17 @@
             height: $(window).height() - 128,
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
-                { label: '标 题', name: 'F_Title', width: 80, align: 'left' },
+                {
+                    label: '标 题', name: 'F_Title', width: 200, align: 'left',
+                    formatter: function (cellvalue, options, rowObject) {
+                        return `<a href="javascript:void(0)" onClick="openNew('${rowObject.F_Id}','${cellvalue}')" style="color:blue;text-decoration-line: underline;" >${cellvalue}</a>`
+                    }
+                },
                 { label: '发布人', name: 'F_Spokesman', width: 80, align: 'left' },
                 {
                     label: '状 态', name: 'F_Status', width: 60, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
+
                         if (cellvalue == true) {
                             return '已发布';
                         } else {
@@ -76,6 +82,7 @@
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 { label: '更新人', name: 'F_LastModifyUserName', width: 80, align: 'left' }
+                
               
             ],
             pager: "#gridPager",
@@ -95,9 +102,9 @@
 
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
-        var title = $("#gridList").jqGridRowValue().F_Title;
+      //  var title = $("#gridList").jqGridRowValue().F_Title;
         if (keyValue) {
-            $.addTab("4BC806F6-3653-40E8-8BDA-CF05B94DCC30" + keyValue, "/SystemManage/RichText/Index?keyValue=" + keyValue, "编辑" + title);
+            $.addTab("4BC806F6-3653-40E8-8BDA-CF05B94DCC30" + keyValue, "/SystemManage/RichText/Index?keyValue=" + keyValue, "编辑" );
         }
     }
     function btn_delete() {
@@ -109,5 +116,10 @@
             }
         })
     }
-   
+
+
+    function openNew(id, title) {
+        $.addTab(id, "/SystemManage/RichText/Preview?keyValue=" + id, title);
+    }
+
 </script>

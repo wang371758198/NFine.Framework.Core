@@ -210,15 +210,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><i class="fa fa-thumbs-o-up fa-lg" style="padding-right: 5px;"></i>最新签约</div>
                         <div class="panel-body">
-                            <ul>
-                                <li><a href="#">南京森鹿皮件服饰有限公司</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">曲靖市绿能燃气运输有限公司</a><span class="time">2016-07-20</span></li>
-                                <li><a href="#">青海航天信息有限公司</a><span class="time">2016-07-19</span></li>
-                                <li><a href="#">吉林省蔬菜花卉科学研究院</a><span class="time">2016-07-17</span></li>
-                                <li><a href="#">青海省广播电视信息网络股份有限公司</a><span class="time">2016-07-17</span></li>
-                                <li><a href="#">国营长空精密机械制造公司</a><span class="time">2016-07-13</span></li>
-                                <li><a href="#">广东友元国土信息工程有限公司</a><span class="time">2016-07-12</span></li>
-                                <li><a href="#">广东友元国土信息工程有限公司</a><span class="time">2016-07-12</span></li>
+                            <ul id="signInfo">
+                             
                             </ul>
                         </div>
                     </div>
@@ -229,15 +222,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><i class="fa fa-rss fa-lg" style="padding-right: 5px;"></i>通知公告</div>
                         <div class="panel-body">
-                            <ul>
-                                <li><a href="#">【通知】新版员工守则，即日执行</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】OA办公使用指南</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】劳动节集体出游指南</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【通知】品牌价值的最佳选择</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-07-21</span></li>
+                            <ul id="notice">
+                              
                             </ul>
                         </div>
                     </div>
@@ -248,15 +234,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><i class="fa fa-send fa-lg" style="padding-right: 5px;"></i>企业文化</div>
                         <div class="panel-body">
-                            <ul>
-                                <li><a href="#">创新企业党建思想政治工作</a><span class="time">2016-07-02</span></li>
-                                <li><a href="#">现代国有企业道德体系初构</a><span class="time">2016-06-18</span></li>
-                                <li><a href="#">国有企业文化问题根源及文化重塑任务分析</a><span class="time">2016-06-26</span></li>
-                                <li><a href="#">国有企业文化建设必须突出员工文化</a><span class="time">2016-04-20</span></li>
-                                <li><a href="#">加强企业公民建设 推进企业和谐发展</a><span class="time">2016-03-08</span></li>
-                                <li><a href="#">不断提升大庆精神 实现企业持续发展</a><span class="time">2016-02-22</span></li>
-                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-02-15</span></li>
-                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-02-15</span></li>
+                            <ul id="culture">
+                               
                             </ul>
                         </div>
                     </div>
@@ -374,3 +353,69 @@
     </style>
 </body>
 </html>
+<script type="text/javascript">
+
+    function openNew(id, title) {
+        var url = "/SystemManage/RichText/Preview?keyValue=" + id;
+
+        var dataId = id;
+
+        var dataUrl = url;
+        var menuName = title;
+        var flag = true;
+        if (dataUrl == undefined || $.trim(dataUrl).length == 0) {
+            return false;
+        }
+        top.$('.menuTab').each(function () {
+            if ($(this).data('id') == dataUrl) {
+                if (!$(this).hasClass('active')) {
+                    top.$(this).addClass('active').siblings('.menuTab').removeClass('active');
+                    top.$.nfinetab.scrollToTab(this);
+                    top.$('.mainContent .NFine_iframe').each(function () {
+                        if ($(this).data('id') == dataUrl) {
+                            $(this).show().siblings('.NFine_iframe').hide();
+                            return false;
+                        }
+                    });
+                }
+                flag = false;
+                return false;
+            }
+        });
+        if (flag) {
+            var str = '<a href="javascript:;" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-remove"></i></a>';
+            top.$('.menuTab').removeClass('active');
+            var str1 = '<iframe class="NFine_iframe" id="iframe' + dataId + '" name="iframe' + dataId + '"  width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" seamless></iframe>';
+            top.$('.mainContent').find('iframe.NFine_iframe').hide();
+            top.$('.mainContent').append(str1);
+            top.$.loading(true);
+            top.$('.mainContent iframe:visible').load(function () {
+               top.$.loading(false);
+            });
+            top.$('.menuTabs .page-tabs-content').append(str);
+            top.$.nfinetab.scrollToTab($('.menuTab.active'));
+        }
+
+    }
+
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: '/richtext/GetNewsInfoList?type=1',
+            dataType:'json'
+        }).then(function (res) {
+          
+            if (res) {
+               
+                for (var i = 0; i < res.length; i++) {
+                    var item = res[i];
+                    var html = ` <li><a href="javascript:void(0)"  onClick="openNew('${item.F_Id}','${item.F_Title}')" >${item.F_Title}</a><span class="time">${item.F_CreatorTime}</span></li>`;
+                    $('#signInfo').append(html);
+                    $('#notice').append(html);
+                    $('#culture').append(html);
+                }
+            }
+        });
+
+    });
+</script>

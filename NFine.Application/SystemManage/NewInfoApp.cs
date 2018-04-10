@@ -55,5 +55,19 @@ namespace NFine.Application.SystemManage
             newsInfoEntity.Remove();
             service.Update(newsInfoEntity);
         }
+
+        /// <summary>
+        /// 根据文章类型取出前多少条信息
+        /// </summary>
+        /// <param name="type">1:</param>
+        /// <param name="topNumber"></param>
+        /// <returns></returns>
+        public List<NewsInfoEntity> GetList(int type, int topNumber)
+        {
+            var expression = ExtLinq.True<NewsInfoEntity>();
+            expression = expression.And(_ => _.F_Type == type && _.F_DeleteMark != true && _.F_Status == true);
+            return service.IQueryable(expression)?.ToList();
+        }
+
     }
 }
