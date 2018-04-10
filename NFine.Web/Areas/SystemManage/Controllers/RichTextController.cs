@@ -4,15 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using NFine.Application.SystemManage;
 using NFine.Code;
 using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Web.Areas.SystemManage.Controllers
 {
-    public class RichTextController : BaseController
+    public class RichTextController : Controller
     {
         private  NewInfoApp app = new NewInfoApp();
+
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         public IActionResult List()
         {
@@ -23,7 +29,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         public IActionResult SubmitForm(NewsInfoEntity newsInfoEntity,string keyValue)
         {
             app.SubmitForm(newsInfoEntity, keyValue);
-            return Success("操作成功。");
+            return Content(new AjaxResult { state = ResultType.success.ToString(), message = "操作成功。" }.ToJson());
         }
 
         public IActionResult GetForm(string keyValue)
@@ -37,10 +43,10 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             if (string.IsNullOrWhiteSpace(keyValue))
-                return Success("数据实体不存在。");
+                return Content(new AjaxResult { state = ResultType.success.ToString(), message = "数据实体不存在。" }.ToJson());
 
             app.DeleteForm(keyValue);
-            return Success("删除成功。");
+            return Content(new AjaxResult { state = ResultType.success.ToString(), message = "操作成功。" }.ToJson());
         }
 
         public ActionResult GetGridJson(Pagination pagination, string keyword)
@@ -120,6 +126,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             action.Process();
            
         }
+
 
         public IActionResult Preview(string keyValue)
         {

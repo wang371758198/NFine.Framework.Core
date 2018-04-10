@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * UEditor
  * version: ueditor
  * build: Wed Aug 10 2016 11:05:20 GMT+0800 (CST)
@@ -24484,7 +24484,8 @@ UE.plugin.register('simpleupload', function (){
             wrapper.innerHTML = '<form id="edui_form_' + timestrap + '" target="edui_iframe_' + timestrap + '" method="POST" enctype="multipart/form-data" action="' + me.getOpt('serverUrl') + '" ' +
             'style="' + btnStyle + '">' +
             '<input id="edui_input_' + timestrap + '" type="file" accept="image/*" name="' + me.options.imageFieldName + '" ' +
-            'style="' + btnStyle + '">' +
+                'style="' + btnStyle + '">' +
+                ' <button type="submit" id="edui_btn_"' + timestrap + ' style="display:none;"></button>' +
             '</form>' +
             '<iframe id="edui_iframe_' + timestrap + '" name="edui_iframe_' + timestrap + '" style="display:none;width:0;height:0;border:0;margin:0;padding:0;position:absolute;"></iframe>';
 
@@ -24503,13 +24504,17 @@ UE.plugin.register('simpleupload', function (){
             var form = btnIframeDoc.getElementById('edui_form_' + timestrap);
             var input = btnIframeDoc.getElementById('edui_input_' + timestrap);
             var iframe = btnIframeDoc.getElementById('edui_iframe_' + timestrap);
+            var btn = btnIframeDoc.getElementById('edui_btn_' + timestrap);
 
+           
+
+          
             domUtils.on(input, 'change', function(){
                 if(!input.value) return;
                 var loadingId = 'loading_' + (+new Date()).toString(36);
                 var params = utils.serializeParam(me.queryCommandValue('serverparam')) || '';
-
-                var imageActionUrl = me.getActionUrl(me.getOpt('imageActionName'));
+                var rd = Math.ceil(Math.random() * 9999) + 1;
+                var imageActionUrl = me.getActionUrl(me.getOpt('imageActionName')) + "&r=" + rd;
                 var allowFiles = me.getOpt('imageAllowFiles');
 
                 me.focus();
@@ -24566,10 +24571,11 @@ UE.plugin.register('simpleupload', function (){
                 }
 
                 domUtils.on(iframe, 'load', callback);
-                form.action = utils.formatUrl(imageActionUrl + (imageActionUrl.indexOf('?') == -1 ? '?':'&') + params);
+                form.action = utils.formatUrl(imageActionUrl + (imageActionUrl.indexOf('?') == -1 ? '?' : '&') + params);
+               
                 form.submit();
             });
-
+            
             var stateTimer;
             me.addListener('selectionchange', function () {
                 clearTimeout(stateTimer);

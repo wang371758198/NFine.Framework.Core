@@ -55,7 +55,7 @@
             colModel: [
                 { label: '主键', name: 'F_Id', hidden: true },
                 {
-                    label: '标 题', name: 'F_Title', width: 200, align: 'left',
+                    label: '标 题', name: 'F_Title', width: 260, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
                         return `<a href="javascript:void(0)" onClick="openNew('${rowObject.F_Id}','${cellvalue}')" style="color:blue;text-decoration-line: underline;" >${cellvalue}</a>`
                     }

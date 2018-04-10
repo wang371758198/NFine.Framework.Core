@@ -373,9 +373,10 @@ $.fn.bindSelect = function (options) {
                 $.each(data, function (i) {
                     $element.append($("<option></option>").val(data[i][options.id]).html(data[i][options.text]));
                 });
-                $element.select2({
-                    minimumResultsForSearch: options.search == true ? 0 : -1
-                });
+                if ($element.select2)
+                    $element.select2({
+                        minimumResultsForSearch: options.search == true ? 0 : -1
+                    });
                 $element.on("change", function (e) {
                     if (options.change != null) {
                         options.change(data[$(this).find("option:selected").index()]);
