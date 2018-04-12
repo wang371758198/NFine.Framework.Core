@@ -12,6 +12,9 @@ namespace NFine.Web.Areas.SystemManage.Controllers
     {
         private UserApp userApp = new UserApp();
         private UserLogOnApp userLogOnApp = new UserLogOnApp();
+        private OrganizeApp organizeApp = new OrganizeApp();
+        private RoleApp roleApp = new RoleApp();
+        private DutyApp dutyApp = new DutyApp();
 
         [HttpGet]
         //[HandlerAjaxOnly]
@@ -92,7 +95,21 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpGet]
         public ActionResult Info()
         {
-            return View();
+            var user = OperatorProvider.Provider.GetCurrent();
+            var entity = userApp.GetForm(user.UserId);
+
+            string OrganizeName = string.Empty;
+
+
+
+            ViewBag.OrganizeName =  organizeApp.GetForm(entity.F_OrganizeId)?.F_FullName;
+            ViewBag.DepartmentName = organizeApp.GetForm(entity.F_DepartmentId)?.F_FullName;
+
+            ViewBag.RoleName = string.IsNullOrWhiteSpace(entity.F_RoleId) == true ? "" : roleApp.GetForm(entity.F_RoleId)?.F_FullName;
+            ViewBag.Duty = string.IsNullOrWhiteSpace(entity.F_DutyId) == true ? "" : dutyApp.GetForm(entity.F_DutyId)?.F_FullName;
+
+
+            return View(entity);
         }
     }
 }

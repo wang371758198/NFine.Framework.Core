@@ -1,138 +1,80 @@
 ﻿@{
     ViewBag.Title = "Info";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
+
+@model  NFine.Domain.Entity.SystemManage.UserEntity;
+
 <script>
+
     $(function () {
         $('.wrapper').height($(window).height() - 11);
-    })
+
+       // $('#F_OrganizeId').val($('#hidF_OrganizeId').val());
+      //  $('#F_DepartmentId').val($('#hidF_DepartmentId').val());
+       // $('#F_RoleId').val($('#hidF_RoleId').val());
+      //  $('#F_DutyId').val($('#hidF_DutyId').val());
+    });
 </script>
 <div class="wrapper">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#a" data-toggle="tab">基本信息</a></li>
-        <li><a href="#b" data-toggle="tab">注册信息</a></li>
-        <li><a href="#c" data-toggle="tab">安全验证</a></li>
-        <li><a href="#c" data-toggle="tab">系统日志</a></li>
-        <li><a href="#c" data-toggle="tab">个性化设置</a></li>
     </ul>
     <div class="tab-content" style="padding-top: 5px;">
         <div id="a" class="tab-pane active" style="padding: 15px;">
             <ul class="pop-list">
                 <li>
                     <label>账户</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" value="@Model.F_Account" />
                 </li>
                 <li>
                     <label>姓名</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" value="@Model.F_RealName" />
                 </li>
                 <li>
                     <label>性别</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control"  value="@(Model.F_Gender == true?"男":"女")"/>
                 </li>
                 <li>
                     <label>出生</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" value="@(Model.F_Birthday?.ToString("yyyy-MM-dd"))" />
                 </li>
                 <li>
                     <label>公司</label>
-                    <input type="text" class="form-control" />
+                   <input type="text" class="form-control" value="@(ViewBag.OrganizeName)" readonly="readonly"/>
                 </li>
                 <li>
                     <label>部门</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" value="@(ViewBag.DepartmentName)" readonly="readonly" />
                 </li>
                 <li>
                     <label>角色</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" value="@(ViewBag.RoleName)" readonly="readonly" />
                 </li>
                 <li>
                     <label>岗位</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" value="@( ViewBag.Duty)" readonly="readonly"/>
                 </li>
                 <li>
-                    <label>自我介绍</label>
-                    <textarea class="form-control" style="height: 60px;"></textarea>
+                    <label>备注</label>
+                    <textarea class="form-control" style="height: 60px;">@(Model.F_Description)</textarea>
                 </li>
                 <li class="line">
                     <h5><span>联系方式</span></h5>
                 </li>
                 <li>
                     <label>手机号码</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" value="@(Model.F_MobilePhone)" />
                 </li>
                 <li>
                     <label>电子邮箱</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control"  value="@(Model.F_Email)"/>
                 </li>
                 <li>
                     <label>微信号</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control"  value="@(Model.F_WeChat)"/>
                 </li>
             </ul>
-        </div>
-        <div id="b" class="tab-pane" style="padding: 15px;">
-            <ul class="pop-list">
-                <li>
-                    <label>账户</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>密码</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>第一次访问时间</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>上一次访问时间</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>最后修改密码时间</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>登录时间</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>登录次数</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>账户类型</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li class="line">
-                    <h5><span>修改密码</span></h5>
-                </li>
-                <li>
-                    <label>旧密码</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>新密码</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <label>确认新密码</label>
-                    <input type="text" class="form-control" />
-                </li>
-                <li>
-                    <div style="padding-left: 115px;">
-                        <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-save" style="margin-right:5px;"></i>确认修改</a>
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-        <div id="c" class="tab-pane" style="padding-right: 15px;">
-            3
-        </div>
-        <div id="d" class="tab-pane" style="padding-right: 15px;">
-            4
         </div>
     </div>
 </div>
