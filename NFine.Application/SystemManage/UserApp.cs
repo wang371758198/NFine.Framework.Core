@@ -85,5 +85,23 @@ namespace NFine.Application.SystemManage
                 throw new Exception("账户不存在，请重新输入");
             }
         }
+
+        /// <summary>
+        /// 判断密码是否正确
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
+        public bool ChangePassworld(string userId, string oldPassword, string newPassword)
+        {
+            UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userId);
+
+            string dbPassword = Md5.md5(oldPassword.ToLower(), 32).ToLower();
+            if (dbPassword != userLogOnEntity.F_UserPassword)
+                return false;
+            service.ChangeUserPassword(userLogOnEntity, newPassword);
+            return true;
+        }
     }
 }

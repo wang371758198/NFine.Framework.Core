@@ -3,6 +3,7 @@ using NFine.Data;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
+using System;
 
 namespace NFine.Repository.SystemManage
 {
@@ -37,5 +38,16 @@ namespace NFine.Repository.SystemManage
                 db.Commit();
             }
         }
+
+        public void ChangeUserPassword(UserLogOnEntity userLogOnEntity, string password)
+        {
+            using (var db = new RepositoryBase())
+            {
+                userLogOnEntity.F_UserPassword = Md5.md5(password, 32).ToLower();
+                userLogOnEntity.F_ChangePasswordDate = DateTime.Now;
+                db.Update<UserLogOnEntity>(userLogOnEntity);
+            }
+        }
+
     }
 }

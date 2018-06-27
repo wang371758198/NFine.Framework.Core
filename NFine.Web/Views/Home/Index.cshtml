@@ -76,7 +76,7 @@
                                     <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
                                     <li><a href="javascript:void();" onclick="layer.msg('功能待实现');"><i class="fa fa-inbox"></i>我的信箱</a></li>
                                     <li style="display:none;"><a href="javascript:void();" onclick="layer.msg('浏览器缓存清除成功');"><i class="fa fa-trash-o"></i>清空缓存</a></li>
-                                    <li style="display:none;"><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
+                                    <li><a href="javascript:void();" onclick="changePwd();"><i class="fa fa-paint-brush"></i>修改密码</a></li>
                                     <li class="divider"></li>
                                     <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
                                 </ul>
@@ -171,6 +171,21 @@
         <script src="~/js/index.js"></script>
         <script src="~/js/indextab.js"></script>
         <script src="~/js/loading/pace.min.js"></script>
+        <script type="text/javascript">
+            function changePwd() {
+                $.modalOpen({
+                    id: "changeForm",
+                    title: "修改密码",
+                    url: "/Home/ChangePwd",
+                    width: "450px",
+                    height: "280px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].submitForm();
+                    }
+                });
+            }
+        </script>
     </environment>
 </body>
 </html>
+

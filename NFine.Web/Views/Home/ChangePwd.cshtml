@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+            <tr>
+                <th class="formTitle">原密码:</th>
+                <td class="formValue">
+                    <input id="F_OldPawword" name="F_OldPawword" type="password" class="form-control required" placeholder="原密码" required="required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">新密码:</th>
+                <td class="formValue">
+                    <input id="F_NewPawword" name="F_NewPawword" type="password" class="form-control required" placeholder="新密码" required="required" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">确认密码:</th>
+                <td class="formValue">
+                    <input id="F_ConfimPawword" name="F_ConfimPawword" type="password" class="form-control required" placeholder="新密码" required="required" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script src="~/js/md5/jquery.md5.js"></script>
+<script type="text/javascript">
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+
+        if ($('#F_NewPawword').val() != $('#F_ConfimPawword').val()) {
+            $.modalMsg("两次密码不一样", "warning");
+            return false;
+        }
+
+        $.submitForm({
+            url: "/Home/SubmitPwd",
+            type: "post",
+            async:false,
+            param: {
+                F_OldPawword: $.md5($.trim($('#F_OldPawword').val())),
+                F_NewPawword: $.md5($.trim($('#F_NewPawword').val()))
+            },
+            success: function () {
+                top.$(".loading-content").hide();
+                document.location.reload();
+            }
+        })
+    }
+</script>
