@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Data.Common;
 using NFine.Code;
+using System.IO;
 
 namespace NFine.Data
 {
@@ -18,7 +19,6 @@ namespace NFine.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //Console.WriteLine("ConfigurationManager.ConnectionStrings[\"NFineDbContext\"]:{0}", ConfigurationManager.ConnectionStrings["NFineDbContext"]);
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["NFineDbContext"],options=>options.UseRowNumberForPaging());
         }
 
@@ -26,16 +26,15 @@ namespace NFine.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            string currentAssembleFileName = Assembly.GetExecutingAssembly().CodeBase.ToString();
-            //Console.WriteLine("currentAssembleFileName:" + currentAssembleFileName);
-            string assembleFileName = currentAssembleFileName.Replace(".Data.", ".Mapping.").Replace("file:///","");
+            string executingAssemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+           
+            string mappingAssemblePath = Path.Combine(executingAssemblyDirectory, "NFine.Mapping.dll");
 
-            //Console.WriteLine(" pre assembleFileName Path: " + assembleFileName);
+            if (!File.Exists(mappingAssemblePath))
+                throw new Exception($"{mappingAssemblePath}文件不存在");
 
-            if (assembleFileName.IndexOf(":") == -1)
-                assembleFileName = @"/" + assembleFileName;
-            //Console.WriteLine("assembleFileName Path: " + assembleFileName);
-            Assembly asm = Assembly.LoadFile(assembleFileName);
+            Assembly asm = Assembly.LoadFile(mappingAssemblePath);
+
             var typesToRegister = asm.GetTypes()
             .Where(type => !String.IsNullOrEmpty(type.Namespace))
             .Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
