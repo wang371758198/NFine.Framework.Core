@@ -15,18 +15,19 @@ namespace NFine.Web
     {
         public static void Main(string[] args)
         {
-            //var logger = NLog.LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
+            var logger = NLog.LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
             try
             {
                 BuildWebHost(args).Run();
             }
             catch (Exception e)
             {
-               // logger.Error(e, "NFine.Web run faild.");
+                logger.Error(e, "NFine.Web run faild.");
+
             }
             finally
             {
-              //  NLog.LogManager.Shutdown();
+                NLog.LogManager.Shutdown();
             }
         }
 
