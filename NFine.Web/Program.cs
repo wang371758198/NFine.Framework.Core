@@ -13,23 +13,8 @@ namespace NFine.Web
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            var logger = NLog.LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
-            try
-            {
-                BuildWebHost(args).Run();
-            }
-            catch (Exception e)
-            {
-                logger.Error(e, "NFine.Web run faild.");
+        public static void Main(string[] args) => BuildWebHost(args).Run();
 
-            }
-            finally
-            {
-                NLog.LogManager.Shutdown();
-            }
-        }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
