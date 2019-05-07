@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Xunit.Abstractions;
 using System.IO;
+using NFine.Code;
 
 namespace NFine.XUnitTesting
 {
@@ -41,10 +42,13 @@ namespace NFine.XUnitTesting
         [Fact]
         public void DITest()
         {
-            string executingAssemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            string mappingAssemblePath = Path.Combine(executingAssemblyDirectory, "NFine.Repository.dll");
-            OutputHelper.WriteLine(mappingAssemblePath);
+            string srcString = "670b14728ad9902aecba32e22fa4f6bd";
+            var _Key = EncryptProvider.CreateDesKey();
+            OutputHelper.WriteLine(_Key);
+            var encrypted = EncryptProvider.DESEncrypt(srcString, _Key);
+            OutputHelper.WriteLine(encrypted);
+            var decrypted = EncryptProvider.DESDecrypt(encrypted, _Key);
+            OutputHelper.WriteLine(decrypted);
         }
 
     }

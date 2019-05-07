@@ -60,7 +60,7 @@ namespace NFine.Application.SystemManage
                 if (userEntity.F_EnabledMark == true)
                 {
                     UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userEntity.F_Id);
-                    string dbPassword = Md5.md5(password.ToLower(), 32).ToLower();
+                    string dbPassword = EncryptProvider.Md5(EncryptProvider.DESEncrypt(password.ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), Code.Internal.MD5Length.L32).ToLower();
                     if (dbPassword == userLogOnEntity.F_UserPassword)
                     {
                         DateTime lastVisitTime = DateTime.Now;
@@ -101,7 +101,7 @@ namespace NFine.Application.SystemManage
         {
             UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userId);
 
-            string dbPassword = Md5.md5(oldPassword.ToLower(), 32).ToLower();
+            string dbPassword = EncryptProvider.Md5(oldPassword.ToLower(), Code.Internal.MD5Length.L32).ToLower();
             if (dbPassword != userLogOnEntity.F_UserPassword)
                 return false;
             service.ChangeUserPassword(userLogOnEntity, newPassword);

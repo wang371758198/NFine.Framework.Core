@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NFine.Code;
 using Xunit;
+using NFine.Code.Internal;
 
 namespace NFine.XUnitTesting.NFine.Code
 {
@@ -11,7 +12,7 @@ namespace NFine.XUnitTesting.NFine.Code
         [Fact]
         public void Md5Test()
         {
-            var result = Md5.md5("aaaaa", 16);
+            var result = EncryptProvider.Md5("aaaaa", MD5Length.L16);
             Assert.Equal(result.Length, 16);
             Console.WriteLine(result);
         }

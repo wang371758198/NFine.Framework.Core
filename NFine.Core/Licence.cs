@@ -16,7 +16,7 @@ namespace NFine.Code
             if (host.Equals("localhost"))
                 return true;
             string licence = Configs.GetValue("LicenceKey");
-            if (licence != null && licence == Md5.md5(key, 32))
+            if (licence != null && licence == EncryptProvider.Md5(key, Internal.MD5Length.L32))
                 return true;
 
             return false;
@@ -29,7 +29,7 @@ namespace NFine.Code
                 licence = Common.GuId();
                 Configs.SetValue("LicenceKey", licence);
             }
-            return Md5.md5(licence, 32);
+            return EncryptProvider.Md5(licence, Internal.MD5Length.L32);
         }
     }
 }

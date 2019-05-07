@@ -41,7 +41,7 @@ namespace NFine.Web.Controllers
             logEntity.F_Type = DbLogType.Login.ToString();
             try
             {
-                if (NFine.Code.WebHelper.GetSession("nfine_session_verifycode").IsEmpty() || Md5.md5(code.ToLower(), 16) != NFine.Code.WebHelper.GetSession("nfine_session_verifycode").ToString())
+                if (NFine.Code.WebHelper.GetSession("nfine_session_verifycode").IsEmpty() || EncryptProvider.Md5(code.ToLower(), Code.Internal.MD5Length.L16) != NFine.Code.WebHelper.GetSession("nfine_session_verifycode").ToString())
                 {
                     throw new Exception("验证码错误，请重新输入");
                 }
@@ -59,7 +59,7 @@ namespace NFine.Web.Controllers
                     operatorModel.LoginIPAddress = Net.Ip;
                     operatorModel.LoginIPAddressName = Net.GetLocation(operatorModel.LoginIPAddress);
                     operatorModel.LoginTime = DateTime.Now;
-                    operatorModel.LoginToken = DESEncrypt.Encrypt(Guid.NewGuid().ToString());
+                    operatorModel.LoginToken = EncryptProvider.DESEncrypt(Guid.NewGuid().ToString());
                     if (userEntity.F_Account == "admin")
                     {
                         operatorModel.IsSystem = true;
@@ -111,12 +111,12 @@ namespace NFine.Web.Controllers
         public IActionResult GetConfig()
         {
             OperatorModel operatorModel = new OperatorModel();
-            var str = DESEncrypt.Encrypt(operatorModel.ToJson());
+            var str = EncryptProvider.DESEncrypt(operatorModel.ToJson());
             //WebHelper.WriteSession("nfine_loginuserkey_2016", str);
            //   HttpContext.Session.TryGetValue("nfine_loginuserkey_2016", out byte[] bytes);
 
            // var encryptString = System.Text.Encoding.UTF8.GetString(bytes);
-            var decryptString = DESEncrypt.Decrypt(str);
+            var decryptString = EncryptProvider.DESDecrypt(str);
             return Content("encrypt:  "+str +" \n decrypt: "+decryptString,"application/json");
         }
 

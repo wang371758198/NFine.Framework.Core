@@ -37,8 +37,8 @@ namespace NFine.Repository.SystemManage
                 {
                     userLogOnEntity.F_Id = userEntity.F_Id;
                     userLogOnEntity.F_UserId = userEntity.F_Id;
-                    userLogOnEntity.F_UserSecretkey = Md5.md5(Common.CreateNo(), 16).ToLower();
-                    userLogOnEntity.F_UserPassword = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userLogOnEntity.F_UserPassword, 32).ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), 32).ToLower();
+                    userLogOnEntity.F_UserSecretkey = EncryptProvider.CreateDesKey();
+                    userLogOnEntity.F_UserPassword = EncryptProvider.Md5(EncryptProvider.DESEncrypt(EncryptProvider.Md5(userLogOnEntity.F_UserPassword, Code.Internal.MD5Length.L32).ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), Code.Internal.MD5Length.L32).ToLower();
                     db.Insert(userEntity);
                     db.Insert(userLogOnEntity);
                 }
@@ -50,7 +50,7 @@ namespace NFine.Repository.SystemManage
         {
             using (var db = this.repositoryBase)
             {
-                userLogOnEntity.F_UserPassword = Md5.md5(password, 32).ToLower();
+                userLogOnEntity.F_UserPassword = EncryptProvider.Md5(password, Code.Internal.MD5Length.L32).ToLower();
                 userLogOnEntity.F_ChangePasswordDate = DateTime.Now;
                 db.Update<UserLogOnEntity>(userLogOnEntity);
             }
