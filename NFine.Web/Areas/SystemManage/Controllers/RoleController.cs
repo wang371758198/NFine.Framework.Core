@@ -9,10 +9,17 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class RoleController : BaseController
     {
-        private RoleApp roleApp = new RoleApp();
-        private RoleAuthorizeApp roleAuthorizeApp = new RoleAuthorizeApp();
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
+        private RoleApp roleApp;
+        private RoleAuthorizeApp roleAuthorizeApp;
+        private ModuleApp moduleApp;
+        private ModuleButtonApp moduleButtonApp;
+        public RoleController(RoleApp roleApp, RoleAuthorizeApp roleAuthorizeApp, ModuleApp moduleApp, ModuleButtonApp moduleButtonApp)
+        {
+            this.roleApp = roleApp;
+            this.roleAuthorizeApp = roleAuthorizeApp;
+            this.moduleApp = moduleApp;
+            this.moduleButtonApp = moduleButtonApp;
+        }
 
         [HttpGet]
        // [HandlerAjaxOnly]

@@ -9,9 +9,13 @@ namespace NFine.Application.SystemManage
 {
     public class UserApp
     {
-        private IUserRepository service = new UserRepository();
-        private UserLogOnApp userLogOnApp = new UserLogOnApp();
-
+        private IUserRepository service;
+        private UserLogOnApp userLogOnApp;
+        public UserApp(IUserRepository userRepository, UserLogOnApp userLogOnApp)
+        {
+            this.service = userRepository;
+            this.userLogOnApp = userLogOnApp;
+        }
         public List<UserEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<UserEntity>();

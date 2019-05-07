@@ -12,6 +12,23 @@ namespace NFine.Web.Controllers
 {
     public class ClientsDataController : BaseController
     {
+        private ItemsDetailApp itemsDetailApp;
+        private ItemsApp itemsApp;
+        private OrganizeApp organizeApp;
+        private RoleApp roleApp;
+        private DutyApp dutyApp;
+        private RoleAuthorizeApp roleAuthorizeApp;
+        public ClientsDataController(ItemsDetailApp itemsDetailApp, ItemsApp itemsApp, OrganizeApp organizeApp,
+            RoleApp roleApp, DutyApp dutyApp, RoleAuthorizeApp roleAuthorizeApp)
+        {
+            this.itemsDetailApp = itemsDetailApp;
+            this.itemsApp = itemsApp;
+            this.organizeApp = organizeApp;
+            this.roleApp = roleApp;
+            this.dutyApp = dutyApp;
+            this.roleAuthorizeApp = roleAuthorizeApp;
+        }
+
         [HttpGet]
         public ActionResult GetClientsDataJson()
         {
@@ -29,9 +46,9 @@ namespace NFine.Web.Controllers
         }
         private object GetDataItemList()
         {
-            var itemdata = new ItemsDetailApp().GetList();
+            var itemdata = itemsDetailApp.GetList();
             Dictionary<string, object> dictionaryItem = new Dictionary<string, object>();
-            foreach (var item in new ItemsApp().GetList())
+            foreach (var item in itemsApp.GetList())
             {
                 var dataItemList = itemdata.FindAll(t => t.F_ItemId.Equals(item.F_Id));
                 Dictionary<string, string> dictionaryItemList = new Dictionary<string, string>();
@@ -45,7 +62,7 @@ namespace NFine.Web.Controllers
         }
         private object GetOrganizeList()
         {
-            OrganizeApp organizeApp = new OrganizeApp();
+            
             var data = organizeApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (OrganizeEntity item in data)
@@ -61,7 +78,7 @@ namespace NFine.Web.Controllers
         }
         private object GetRoleList()
         {
-            RoleApp roleApp = new RoleApp();
+            
             var data = roleApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (RoleEntity item in data)
@@ -77,7 +94,7 @@ namespace NFine.Web.Controllers
         }
         private object GetDutyList()
         {
-            DutyApp dutyApp = new DutyApp();
+            
             var data = dutyApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (RoleEntity item in data)
@@ -95,7 +112,7 @@ namespace NFine.Web.Controllers
         private object GetMenuList()
         {
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
-            return ToMenuJson(new RoleAuthorizeApp().GetMenuList(roleId), "0");
+            return ToMenuJson(roleAuthorizeApp.GetMenuList(roleId), "0");
         }
         private string ToMenuJson(List<ModuleEntity> data, string parentId)
         {
@@ -118,7 +135,7 @@ namespace NFine.Web.Controllers
         private object GetMenuButtonList()
         {
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
-            var data = new RoleAuthorizeApp().GetButtonList(roleId);
+            var data = roleAuthorizeApp.GetButtonList(roleId);
             var dataModuleId = data.Distinct(new ExtList<ModuleButtonEntity>("F_ModuleId"));
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (ModuleButtonEntity item in dataModuleId)

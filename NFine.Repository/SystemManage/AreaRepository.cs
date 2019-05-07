@@ -7,6 +7,9 @@ namespace NFine.Repository.SystemManage
 {
     public class AreaRepository : RepositoryBase<AreaEntity>, IAreaRepository
     {
-        
+        public AreaRepository(NFineDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }

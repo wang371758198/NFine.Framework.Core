@@ -9,7 +9,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class DutyController : BaseController
     {
-        private DutyApp dutyApp = new DutyApp();
+        private DutyApp dutyApp;
+        public DutyController(DutyApp dutyApp)
+        {
+            this.dutyApp = dutyApp;
+        }
 
         [HttpGet]
         //[HandlerAjaxOnly]

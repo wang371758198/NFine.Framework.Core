@@ -9,7 +9,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class OrganizeController : BaseController
     {
-        private OrganizeApp organizeApp = new OrganizeApp();
+        private OrganizeApp organizeApp;
+        public OrganizeController(OrganizeApp organizeApp)
+        {
+            this.organizeApp = organizeApp;
+        }
 
         [HttpGet]
         //[HandlerAjaxOnly]

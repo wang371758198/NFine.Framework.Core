@@ -9,8 +9,11 @@ namespace NFine.Application.SystemManage
 {
     public class AreaApp
     {
-        private IAreaRepository service = new AreaRepository();
-
+        private IAreaRepository service;
+        public AreaApp(IAreaRepository areaRepository)
+        {
+            this.service = areaRepository;
+        }
         public List<AreaEntity> GetList()
         {
             return service.IQueryable().ToList();

@@ -9,7 +9,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class ItemsTypeController : BaseController
     {
-        private ItemsApp itemsApp = new ItemsApp();
+        private ItemsApp itemsApp;
+        public ItemsTypeController(ItemsApp itemsApp)
+        {
+            this.itemsApp = itemsApp;
+        }
 
         [HttpGet]
         //[HandlerAjaxOnly]

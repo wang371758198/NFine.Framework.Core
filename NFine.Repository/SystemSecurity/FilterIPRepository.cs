@@ -7,6 +7,9 @@ namespace NFine.Repository.SystemSecurity
 {
     public class FilterIPRepository : RepositoryBase<FilterIPEntity>, IFilterIPRepository
     {
-       
+        public FilterIPRepository(NFineDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }

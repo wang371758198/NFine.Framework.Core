@@ -10,7 +10,11 @@ namespace NFine.Web.Areas.SystemSecurity.Controllers
 {
     public class LogController : BaseController
     {
-        private LogApp logApp = new LogApp();
+        private LogApp logApp;
+        public LogController(LogApp logApp)
+        {
+            this.logApp = logApp;
+        }
 
         [HttpGet]
         public ActionResult RemoveLog()

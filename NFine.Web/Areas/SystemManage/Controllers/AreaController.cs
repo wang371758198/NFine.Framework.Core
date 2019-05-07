@@ -9,7 +9,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class AreaController : BaseController
     {
-        private AreaApp areaApp = new AreaApp();
+        private AreaApp areaApp;
+        public AreaController(AreaApp areaApp)
+        {
+            this.areaApp = areaApp;
+        }
 
         [HttpGet]
         //[HandlerAjaxOnly]

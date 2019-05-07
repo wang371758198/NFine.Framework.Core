@@ -9,8 +9,12 @@ namespace NFine.Application.SystemSecurity
 {
     public class FilterIPApp
     {
-        private IFilterIPRepository service = new FilterIPRepository();
+        private IFilterIPRepository service;
 
+        public FilterIPApp(IFilterIPRepository filterIPRepository)
+        {
+            this.service = filterIPRepository;
+        }
         public List<FilterIPEntity> GetList(string keyword)
         {
             var expression = ExtLinq.True<FilterIPEntity>();

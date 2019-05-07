@@ -10,8 +10,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class ItemsDataController : BaseController
     {
-        private ItemsDetailApp itemsDetailApp = new ItemsDetailApp();
-
+        private ItemsDetailApp itemsDetailApp;
+        public ItemsDataController(ItemsDetailApp itemsDetailApp)
+        {
+            this.itemsDetailApp = itemsDetailApp;
+        }
         [HttpGet]
        // [HandlerAjaxOnly]
         public ActionResult GetGridJson(string itemId, string keyword)

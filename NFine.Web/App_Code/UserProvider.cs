@@ -15,9 +15,10 @@ namespace NFine.Web
         /// <returns></returns>
         public static UserEntity GetCurrentUser()
         {
-            var userApp = new UserApp();
-            var userEntity = userApp.GetForm(HttpContext.Current.User.Identity.Name);
-            return userEntity;
+            //var userApp = new UserApp();
+            //var userEntity = userApp.GetForm(HttpContext.Current.User.Identity.Name);
+            //return userEntity;
+            return null;
         }
     }
 }

@@ -18,7 +18,13 @@ namespace NFine.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        private UserApp userApp = new UserApp();
+        private UserApp userApp;
+        private LogApp logApp;
+        public HomeController(UserApp userApp, LogApp logApp)
+        {
+            this.userApp = userApp;
+            this.logApp = logApp;
+        }
 
         // [Authorize]
         public override ActionResult Index()
@@ -59,7 +65,7 @@ namespace NFine.Web.Controllers
             if (!userApp.ChangePassworld(OperatorProvider.Provider.GetCurrent().UserId, query.F_OldPawword, query.F_NewPawword))
                 return Error("原密码不正确");
 
-            new LogApp().WriteDbLog(new LogEntity
+            logApp.WriteDbLog(new LogEntity
             {
                 F_ModuleName = "系统登录",
                 F_Type = DbLogType.Exit.ToString(),

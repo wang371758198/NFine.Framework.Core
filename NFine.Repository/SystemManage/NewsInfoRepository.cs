@@ -7,7 +7,11 @@ using NFine.Domain.IRepository.SystemManage;
 
 namespace NFine.Repository.SystemManage
 {
-   public class NewsInfoRepository: RepositoryBase<NewsInfoEntity>, INewsInfoRepository
+    public class NewsInfoRepository : RepositoryBase<NewsInfoEntity>, INewsInfoRepository
     {
+        public NewsInfoRepository(NFineDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }

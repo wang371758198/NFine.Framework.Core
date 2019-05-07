@@ -11,6 +11,11 @@ namespace NFine.Repository.SystemManage
 {
     public class ItemsDetailRepository : RepositoryBase<ItemsDetailEntity>, IItemsDetailRepository
     {
+        public ItemsDetailRepository(NFineDbContext dbContext):base(dbContext)
+        {
+
+        }
+
         public List<ItemsDetailEntity> GetItemList(string enCode)
         {
             StringBuilder strSql = new StringBuilder();

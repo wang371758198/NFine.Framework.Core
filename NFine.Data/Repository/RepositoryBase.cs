@@ -14,9 +14,15 @@ namespace NFine.Data
     /// <summary>
     /// 仓储实现
     /// </summary>
-    public class RepositoryBase : IRepositoryBase, IDisposable
+    public class RepositoryBase : IRepositoryBase
     {
-        private NFineDbContext dbcontext = new NFineDbContext();
+
+        public RepositoryBase(NFineDbContext dbContext)
+        {
+            this.dbcontext = dbContext;
+        }
+
+        private NFineDbContext dbcontext = null; //= new NFineDbContext();
         private DbTransaction dbTransaction { get; set; }
         public IRepositoryBase BeginTrans()
         {

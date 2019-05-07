@@ -8,9 +8,15 @@ namespace NFine.Repository.SystemManage
 {
     public class RoleRepository : RepositoryBase<RoleEntity>, IRoleRepository
     {
+        private IRepositoryBase repositoryBase;
+        public RoleRepository(NFineDbContext dbContext, IRepositoryBase repositoryBase):base(dbContext)
+        {
+            this.repositoryBase = repositoryBase;
+        }
+
         public void DeleteForm(string keyValue)
         {
-            using (var db = new RepositoryBase().BeginTrans())
+            using (var db = this.repositoryBase.BeginTrans())
             {
                 db.Delete<RoleEntity>(t => t.F_Id == keyValue);
                 db.Delete<RoleAuthorizeEntity>(t => t.F_ObjectId == keyValue);
@@ -19,7 +25,7 @@ namespace NFine.Repository.SystemManage
         }
         public void SubmitForm(RoleEntity roleEntity, List<RoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue)
         {
-            using (var db = new RepositoryBase().BeginTrans())
+            using (var db = this.repositoryBase.BeginTrans())
             {
                 if (!string.IsNullOrEmpty(keyValue))
                 {

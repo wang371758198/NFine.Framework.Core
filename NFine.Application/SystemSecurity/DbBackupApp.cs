@@ -10,7 +10,11 @@ namespace NFine.Application.SystemSecurity
 {
     public class DbBackupApp
     {
-        private IDbBackupRepository service = new DbBackupRepository();
+        private IDbBackupRepository service;
+        public DbBackupApp(IDbBackupRepository dbBackupRepository)
+        {
+            this.service = dbBackupRepository;
+        }
 
         public List<DbBackupEntity> GetList(string queryJson)
         {

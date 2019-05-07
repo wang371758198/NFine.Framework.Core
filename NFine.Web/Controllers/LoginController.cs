@@ -14,7 +14,15 @@ namespace NFine.Web.Controllers
 {
     public class LoginController : Controller
     {
-        public   ActionResult Index()
+        private UserApp userApp;
+        private LogApp logApp;
+        public LoginController(UserApp userApp,LogApp logApp)
+        {
+            this.userApp = userApp;
+            this.logApp = logApp;
+        }
+
+        public ActionResult Index()
         {
             return View();
         }
@@ -38,7 +46,7 @@ namespace NFine.Web.Controllers
                     throw new Exception("验证码错误，请重新输入");
                 }
 
-                UserEntity userEntity = new UserApp().CheckLogin(username, password);
+                UserEntity userEntity = userApp.CheckLogin(username, password);
                 if (userEntity != null)
                 {
                     OperatorModel operatorModel = new OperatorModel();
@@ -67,7 +75,7 @@ namespace NFine.Web.Controllers
                     logEntity.F_Description = "登录成功";
                     logEntity.F_CreatorUserId = operatorModel.UserId;
                     logEntity.F_CreatorUserName = operatorModel.UserName;
-                    new LogApp().WriteDbLog(logEntity);
+                    logApp.WriteDbLog(logEntity);
                 }
                 return Content(new AjaxResult { state = ResultType.success.ToString(), message = "登录成功。" }.ToJson());
             }
@@ -79,7 +87,7 @@ namespace NFine.Web.Controllers
                 logEntity.F_Description = "登录失败，" + ex.Message;
                 logEntity.F_CreatorUserId = username;
                 logEntity.F_CreatorUserName = username;
-                new LogApp().WriteDbLog(logEntity);
+                logApp.WriteDbLog(logEntity);
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
         }
@@ -87,7 +95,7 @@ namespace NFine.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> OutLogin()
         {
-            new LogApp().WriteDbLog(new LogEntity
+            logApp.WriteDbLog(new LogEntity
             {
                 F_ModuleName = "系统登录",
                 F_Type = DbLogType.Exit.ToString(),

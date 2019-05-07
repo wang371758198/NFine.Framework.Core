@@ -8,9 +8,15 @@ namespace NFine.Repository.SystemManage
 {
     public class ModuleButtonRepository : RepositoryBase<ModuleButtonEntity>, IModuleButtonRepository
     {
+        private IRepositoryBase repositoryBase;
+        public ModuleButtonRepository(NFineDbContext dbContext,IRepositoryBase repositoryBase):base(dbContext)
+        {
+            this.repositoryBase = repositoryBase;
+        }
+
         public void SubmitCloneButton(List<ModuleButtonEntity> entitys)
         {
-            using (var db = new RepositoryBase().BeginTrans())
+            using (var db = repositoryBase.BeginTrans())
             {
                 foreach (var item in entitys)
                 {

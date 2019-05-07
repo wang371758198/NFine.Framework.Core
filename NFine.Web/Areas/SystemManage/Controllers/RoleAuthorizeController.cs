@@ -9,10 +9,15 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class RoleAuthorizeController : BaseController
     {
-        private RoleAuthorizeApp roleAuthorizeApp = new RoleAuthorizeApp();
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
-
+        private RoleAuthorizeApp roleAuthorizeApp;
+        private ModuleApp moduleApp;
+        private ModuleButtonApp moduleButtonApp;
+        public RoleAuthorizeController(RoleAuthorizeApp roleAuthorizeApp, ModuleApp moduleApp, ModuleButtonApp moduleButtonApp)
+        {
+            this.roleAuthorizeApp = roleAuthorizeApp;
+            this.moduleApp = moduleApp;
+            this.moduleButtonApp = moduleButtonApp;
+        }
         public ActionResult GetPermissionTree(string roleId)
         {
             var moduledata = moduleApp.GetList();

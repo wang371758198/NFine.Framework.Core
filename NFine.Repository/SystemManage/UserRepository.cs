@@ -9,9 +9,16 @@ namespace NFine.Repository.SystemManage
 {
     public class UserRepository : RepositoryBase<UserEntity>, IUserRepository
     {
+        private IRepositoryBase repositoryBase;
+        public UserRepository(NFineDbContext dbContext, IRepositoryBase repositoryBase) : base(dbContext)
+        {
+            this.repositoryBase = repositoryBase;
+        }
+
         public void DeleteForm(string keyValue)
         {
-            using (var db = new RepositoryBase().BeginTrans())
+            
+            using (var db = this.repositoryBase .BeginTrans())
             {
                 db.Delete<UserEntity>(t => t.F_Id == keyValue);
                 db.Delete<UserLogOnEntity>(t => t.F_UserId == keyValue);
@@ -20,7 +27,7 @@ namespace NFine.Repository.SystemManage
         }
         public void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
         {
-            using (var db = new RepositoryBase().BeginTrans())
+            using (var db = this.repositoryBase.BeginTrans())
             {
                 if (!string.IsNullOrEmpty(keyValue))
                 {
@@ -41,7 +48,7 @@ namespace NFine.Repository.SystemManage
 
         public void ChangeUserPassword(UserLogOnEntity userLogOnEntity, string password)
         {
-            using (var db = new RepositoryBase())
+            using (var db = this.repositoryBase)
             {
                 userLogOnEntity.F_UserPassword = Md5.md5(password, 32).ToLower();
                 userLogOnEntity.F_ChangePasswordDate = DateTime.Now;

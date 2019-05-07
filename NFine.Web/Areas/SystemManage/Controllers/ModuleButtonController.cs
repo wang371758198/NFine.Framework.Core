@@ -9,8 +9,13 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class ModuleButtonController : BaseController
     {
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
+        private ModuleApp moduleApp;
+        private ModuleButtonApp moduleButtonApp;
+        public ModuleButtonController(ModuleApp moduleApp, ModuleButtonApp moduleButtonApp)
+        {
+            this.moduleApp = moduleApp;
+            this.moduleButtonApp = moduleButtonApp;
+        }
         [HttpGet]
         //[HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson(string moduleId)

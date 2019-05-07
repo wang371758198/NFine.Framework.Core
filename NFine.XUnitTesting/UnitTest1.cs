@@ -37,7 +37,15 @@ namespace NFine.XUnitTesting
             Console.WriteLine(assembleFileName);
             OutputHelper.WriteLine(assembleFileName);
         }
-        
+
+        [Fact]
+        public void DITest()
+        {
+            string executingAssemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            string mappingAssemblePath = Path.Combine(executingAssemblyDirectory, "NFine.Repository.dll");
+            OutputHelper.WriteLine(mappingAssemblePath);
+        }
 
     }
 }

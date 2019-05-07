@@ -16,7 +16,12 @@ namespace NFine.Data
     /// <typeparam name="TEntity"></typeparam>
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class,new()
     {
-        public NFineDbContext dbcontext = new NFineDbContext();
+        public RepositoryBase(NFineDbContext dbContext)
+        {
+            this.dbcontext = dbContext;
+        }
+
+        public NFineDbContext dbcontext = null;//= new NFineDbContext();
         public int Insert(TEntity entity)
         {
             dbcontext.Entry<TEntity>(entity).State = EntityState.Added;

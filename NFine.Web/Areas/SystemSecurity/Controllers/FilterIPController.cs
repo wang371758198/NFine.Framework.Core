@@ -6,7 +6,11 @@ namespace NFine.Web.Areas.SystemSecurity.Controllers
 {
     public class FilterIPController : BaseController
     {
-        private FilterIPApp filterIPApp = new FilterIPApp();
+        private FilterIPApp filterIPApp;
+        public FilterIPController(FilterIPApp filterIPApp)
+        {
+            this.filterIPApp = filterIPApp;
+        }
 
         [HttpGet]
         //[HandlerAjaxOnly]

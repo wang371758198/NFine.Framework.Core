@@ -11,10 +11,15 @@ namespace NFine.Application.SystemManage
 {
     public class RoleAuthorizeApp
     {
-        private IRoleAuthorizeRepository service = new RoleAuthorizeRepository();
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
-
+        private IRoleAuthorizeRepository service;
+        private ModuleApp moduleApp;
+        private ModuleButtonApp moduleButtonApp;
+        public RoleAuthorizeApp(IRoleAuthorizeRepository roleAuthorizeRepository, ModuleApp moduleApp, ModuleButtonApp moduleButtonApp)
+        {
+            this.service = roleAuthorizeRepository;
+            this.moduleApp = moduleApp;
+            this.moduleButtonApp = moduleButtonApp;
+        }
         public List<RoleAuthorizeEntity> GetList(string ObjectId)
         {
             return service.IQueryable(t => t.F_ObjectId == ObjectId).ToList();

@@ -13,8 +13,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class RichTextController : Controller
     {
-        private  NewInfoApp app = new NewInfoApp();
-
+        private NewInfoApp app;
+        public RichTextController(NewInfoApp newInfoApp)
+        {
+            this.app = newInfoApp;
+        }
         public IActionResult Index()
         {
             return View();

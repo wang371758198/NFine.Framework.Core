@@ -9,10 +9,15 @@ namespace NFine.Application.SystemManage
 {
     public class RoleApp
     {
-        private IRoleRepository service = new RoleRepository();
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
-
+        private IRoleRepository service;
+        private ModuleApp moduleApp;
+        private ModuleButtonApp moduleButtonApp;
+        public RoleApp(IRoleRepository roleRepository, ModuleApp moduleApp, ModuleButtonApp moduleButtonApp)
+        {
+            this.service = roleRepository;
+            this.moduleApp = moduleApp;
+            this.moduleButtonApp = moduleButtonApp;
+        }
         public List<RoleEntity> GetList(string keyword = "")
         {
             var expression = ExtLinq.True<RoleEntity>();

@@ -11,8 +11,11 @@ namespace NFine.Application.SystemManage
 {
     public class ModuleApp
     {
-        private IModuleRepository service = new ModuleRepository();
-
+        private IModuleRepository service;
+        public ModuleApp(IModuleRepository moduleRepository)
+        {
+            this.service = moduleRepository;
+        }
         public List<ModuleEntity> GetList()
         {
             var expression = ExtLinq.True<ModuleEntity>();

@@ -9,8 +9,11 @@ namespace NFine.Application.SystemManage
 {
     public class OrganizeApp
     {
-        private IOrganizeRepository service = new OrganizeRepository();
-
+        private IOrganizeRepository service;
+        public OrganizeApp(IOrganizeRepository organizeRepository)
+        {
+            this.service = organizeRepository;
+        }
         public List<OrganizeEntity> GetList()
         {
             return service.IQueryable().OrderBy(t => t.F_CreatorTime).ToList();

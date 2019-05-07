@@ -7,6 +7,9 @@ namespace NFine.Repository.SystemManage
 {
     public class OrganizeRepository : RepositoryBase<OrganizeEntity>, IOrganizeRepository
     {
+        public OrganizeRepository(NFineDbContext dbContext) : base(dbContext)
+        {
 
+        }
     }
 }

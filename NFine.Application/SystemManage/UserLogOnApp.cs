@@ -7,8 +7,11 @@ namespace NFine.Application.SystemManage
 {
     public class UserLogOnApp
     {
-        private IUserLogOnRepository service = new UserLogOnRepository();
-
+        private IUserLogOnRepository service;
+        public UserLogOnApp(IUserLogOnRepository userLogOnRepository)
+        {
+            this.service = userLogOnRepository;
+        }
         public UserLogOnEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);

@@ -12,8 +12,11 @@ namespace NFine.Application.SystemManage
 {
    public class NewInfoApp
     {
-        private INewsInfoRepository service = new NewsInfoRepository();
-
+        private INewsInfoRepository service;
+        public NewInfoApp(INewsInfoRepository newsInfoRepository)
+        {
+            this.service = newsInfoRepository;
+        }
         public List<NewsInfoEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<NewsInfoEntity>();

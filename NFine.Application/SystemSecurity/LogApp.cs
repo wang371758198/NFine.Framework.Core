@@ -9,7 +9,11 @@ namespace NFine.Application.SystemSecurity
 {
     public class LogApp
     {
-        private ILogRepository service = new LogRepository();
+        private ILogRepository service;
+        public LogApp(ILogRepository logRepository)
+        {
+            this.service = logRepository;
+        }
 
         public List<LogEntity> GetList(Pagination pagination, string queryJson)
         {

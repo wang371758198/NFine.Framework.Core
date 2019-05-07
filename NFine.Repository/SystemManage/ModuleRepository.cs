@@ -7,5 +7,9 @@ namespace NFine.Repository.SystemManage
 {
     public class ModuleRepository : RepositoryBase<ModuleEntity>, IModuleRepository
     {
+        public ModuleRepository(NFineDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }

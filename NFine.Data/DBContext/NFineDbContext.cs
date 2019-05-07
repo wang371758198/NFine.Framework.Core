@@ -11,15 +11,15 @@ namespace NFine.Data
 {
     public partial class NFineDbContext : DbContext
     {
-        public NFineDbContext()
-            : base()
+        public NFineDbContext(DbContextOptions options)
+            : base(options)
         {
-            
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["NFineDbContext"],options=>options.UseRowNumberForPaging());
+            //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["NFineDbContext"],options=>options.UseRowNumberForPaging());
         }
 
         // public DbSet<UserEntity> UserEntities { get; set; }

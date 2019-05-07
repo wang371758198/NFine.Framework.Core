@@ -9,7 +9,11 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class ModuleController : BaseController
     {
-        private ModuleApp moduleApp = new ModuleApp();
+        private ModuleApp moduleApp;
+        public ModuleController(ModuleApp moduleApp)
+        {
+            this.moduleApp = moduleApp;
+        }
 
         [HttpGet]
         //[HandlerAjaxOnly]

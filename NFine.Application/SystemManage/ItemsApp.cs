@@ -9,8 +9,11 @@ namespace NFine.Application.SystemManage
 {
     public class ItemsApp
     {
-        private IItemsRepository service = new ItemsRepository();
-
+        private IItemsRepository service;
+        public ItemsApp(IItemsRepository itemsRepository)
+        {
+            this.service = itemsRepository;
+        }
         public List<ItemsEntity> GetList()
         {
             return service.IQueryable().ToList();

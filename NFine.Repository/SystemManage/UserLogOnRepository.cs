@@ -7,6 +7,9 @@ namespace NFine.Repository.SystemManage
 {
     public class UserLogOnRepository : RepositoryBase<UserLogOnEntity>, IUserLogOnRepository
     {
-
+        public UserLogOnRepository(NFineDbContext dbContext):base(dbContext)
+        {
+            
+        }
     }
 }

@@ -7,6 +7,10 @@ namespace NFine.Repository.SystemManage
 {
     public class ItemsRepository : RepositoryBase<ItemsEntity>, IItemsRepository
     {
+        public ItemsRepository(NFineDbContext dbContext) : base(dbContext)
+        {
+
+        }
 
     }
 }

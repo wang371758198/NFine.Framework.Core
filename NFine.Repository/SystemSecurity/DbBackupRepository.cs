@@ -9,9 +9,15 @@ namespace NFine.Repository.SystemSecurity
 {
     public class DbBackupRepository : RepositoryBase<DbBackupEntity>, IDbBackupRepository
     {
+        private IRepositoryBase repositoryBase;
+        public DbBackupRepository(NFineDbContext dbContext, IRepositoryBase repositoryBase) : base(dbContext)
+        {
+            this.repositoryBase = repositoryBase;
+        }
+
         public void DeleteForm(string keyValue)
         {
-            using (var db = new RepositoryBase().BeginTrans())
+            using (var db = this.repositoryBase.BeginTrans())
             {
                 var dbBackupEntity = db.FindEntity<DbBackupEntity>(keyValue);
                 if (dbBackupEntity != null)

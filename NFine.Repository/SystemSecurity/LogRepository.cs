@@ -7,6 +7,10 @@ namespace NFine.Repository.SystemSecurity
 {
     public class LogRepository : RepositoryBase<LogEntity>, ILogRepository
     {
-       
+        public LogRepository(NFineDbContext dbContext) : base(dbContext)
+        {
+
+        }
+
     }
 }

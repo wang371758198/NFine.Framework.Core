@@ -9,9 +9,13 @@ namespace NFine.Application.SystemManage
 {
     public class ItemsDetailApp
     {
-        private IItemsDetailRepository service = new ItemsDetailRepository();
-        private IItemsRepository itemsService = new ItemsRepository();
-
+        private IItemsDetailRepository service;
+        private IItemsRepository itemsService;
+        public ItemsDetailApp(IItemsDetailRepository itemsDetailRepository, IItemsRepository itemsRepository)
+        {
+            this.service = itemsDetailRepository;
+            this.itemsService = itemsRepository;
+        }
         public List<ItemsDetailEntity> GetList(string itemId = "", string keyword = "")
         {
             var expression = ExtLinq.True<ItemsDetailEntity>();

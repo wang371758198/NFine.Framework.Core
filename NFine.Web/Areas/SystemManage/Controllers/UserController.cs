@@ -10,11 +10,19 @@ namespace NFine.Web.Areas.SystemManage.Controllers
 {
     public class UserController : BaseController
     {
-        private UserApp userApp = new UserApp();
-        private UserLogOnApp userLogOnApp = new UserLogOnApp();
-        private OrganizeApp organizeApp = new OrganizeApp();
-        private RoleApp roleApp = new RoleApp();
-        private DutyApp dutyApp = new DutyApp();
+        private UserApp userApp;
+        private UserLogOnApp userLogOnApp;
+        private OrganizeApp organizeApp;
+        private RoleApp roleApp;
+        private DutyApp dutyApp;
+        public UserController(UserApp userApp, UserLogOnApp userLogOnApp,OrganizeApp organizeApp, RoleApp roleApp,DutyApp dutyApp)
+        {
+            this.userApp = userApp;
+            this.userLogOnApp = userLogOnApp;
+            this.organizeApp = organizeApp;
+            this.roleApp = roleApp;
+            this.dutyApp = dutyApp;
+        }
 
         [HttpGet]
         //[HandlerAjaxOnly]

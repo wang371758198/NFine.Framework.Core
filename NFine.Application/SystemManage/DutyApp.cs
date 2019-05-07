@@ -9,7 +9,11 @@ namespace NFine.Application.SystemManage
 {
     public class DutyApp
     {
-        private IRoleRepository service = new RoleRepository();
+        private IRoleRepository service;
+        public DutyApp(IRoleRepository roleRepository)
+        {
+            this.service = roleRepository;
+        }
 
         public List<RoleEntity> GetList(string keyword = "")
         {

@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.EntityFrameworkCore;
+using NFine.Data;
+using System.IO;
+using System.Reflection;
 
 namespace NFine.Web
 {
@@ -49,6 +52,34 @@ namespace NFine.Web
                 options.LoginPath = "/Login/Index";
                 options.Cookie.Name = "AuthCookie";
             });
+            services.AddDbContextPool<NFineDbContext>(optionsAction =>
+            {
+                optionsAction.UseSqlServer(Configuration.GetSection("connectionStrings:NFineDbContext").Value, options => options.UseRowNumberForPaging());
+            });
+            services.AddScoped<IRepositoryBase, RepositoryBase>();
+            #region 注入repositorybase类
+            Assembly asm = System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName("NFine.Repository"));
+            var typesToRegister = asm.GetTypes()
+           .Where(type => !String.IsNullOrEmpty(type.Namespace) && type.IsPublic).Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(RepositoryBase<>));
+
+            foreach (var type in typesToRegister)
+            {
+                if (type.IsClass)
+                {
+                    services.AddScoped(type.GetInterface("I" + type.Name), type);
+                }
+            }
+            #endregion
+
+            #region 注入app类
+            var nfineApplication = Microsoft.Extensions.DependencyModel.DependencyContext.Default.CompileLibraries.FirstOrDefault(_ => _.Name.Equals("NFine.Application"));
+            var application = System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(nfineApplication.Name));
+            var apps = application.GetTypes().Where(_ => _.IsClass && _.IsPublic).Where(type => !String.IsNullOrEmpty(type.Namespace));
+            foreach (var type in apps)
+            {
+                services.AddScoped(type, type);
+            }
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

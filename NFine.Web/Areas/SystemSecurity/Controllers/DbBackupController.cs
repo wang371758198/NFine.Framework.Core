@@ -7,8 +7,11 @@ namespace NFine.Web.Areas.SystemSecurity.Controllers
 {
     public class DbBackupController : BaseController
     {
-        private DbBackupApp dbBackupApp = new DbBackupApp();
-
+        private DbBackupApp dbBackupApp;
+        public DbBackupController(DbBackupApp dbBackupApp)
+        {
+            this.dbBackupApp = dbBackupApp;
+        }
         [HttpGet]
         //[HandlerAjaxOnly]
         public ActionResult GetGridJson(string queryJson)

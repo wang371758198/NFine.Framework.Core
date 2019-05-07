@@ -10,8 +10,11 @@ namespace NFine.Application.SystemManage
 {
     public class ModuleButtonApp
     {
-        private IModuleButtonRepository service = new ModuleButtonRepository();
-
+        private IModuleButtonRepository service;
+        public ModuleButtonApp(IModuleButtonRepository moduleButtonRepository)
+        {
+            this.service = moduleButtonRepository;
+        }
         public List<ModuleButtonEntity> GetList(string moduleId = "")
         {
             var expression = ExtLinq.True<ModuleButtonEntity>();
