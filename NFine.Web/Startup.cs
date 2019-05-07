@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using NFine.Data;
 using System.IO;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace NFine.Web
 {
@@ -55,6 +56,9 @@ namespace NFine.Web
             services.AddDbContextPool<NFineDbContext>(optionsAction =>
             {
                 optionsAction.UseSqlServer(Configuration.GetSection("connectionStrings:NFineDbContext").Value, options => options.UseRowNumberForPaging());
+#if DEBUG
+                optionsAction.ConfigureWarnings(warningsConfigurationBuilderAction => warningsConfigurationBuilderAction.Throw(RelationalEventId.QueryClientEvaluationWarning));
+#endif
             });
             services.AddScoped<IRepositoryBase, RepositoryBase>();
             #region 注入repositorybase类

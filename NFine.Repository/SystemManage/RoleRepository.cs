@@ -37,7 +37,8 @@ namespace NFine.Repository.SystemManage
                     db.Insert(roleEntity);
                 }
                 db.Delete<RoleAuthorizeEntity>(t => t.F_ObjectId == roleEntity.F_Id);
-                db.Insert(roleAuthorizeEntitys);
+                if (roleAuthorizeEntitys?.Count > 0)
+                    db.Insert(roleAuthorizeEntitys);
                 db.Commit();
             }
         }

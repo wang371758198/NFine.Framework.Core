@@ -33,19 +33,19 @@ namespace NFine.Data
                 dbConnection.Open();
             }
             dbTransaction = dbConnection.BeginTransaction();
+            dbcontext.Database.UseTransaction(dbTransaction);
            return this;
         }
         public int Commit()
         {
             try
             {
+                var returnValue = dbcontext.SaveChanges();
+
                 if (dbTransaction != null)
                 {
                     dbTransaction.Commit();
                 }
-
-                var returnValue = dbcontext.SaveChanges();
-
                 return returnValue;
             }
             catch (Exception em)
@@ -107,8 +107,8 @@ namespace NFine.Data
         }
         public int Delete<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
         {
-            var entitys = dbcontext.Set<TEntity>().Where(predicate).ToList();
-            entitys.ForEach(m => dbcontext.Entry<TEntity>(m).State = EntityState.Deleted);
+            var entitys = dbcontext.Set<TEntity>().Where(predicate)?.ToList();
+            entitys?.ForEach(m => dbcontext.Entry<TEntity>(m).State = EntityState.Deleted);
             return dbTransaction == null ? this.Commit() : 0;
         }
         public TEntity FindEntity<TEntity>(object keyValue) where TEntity : class

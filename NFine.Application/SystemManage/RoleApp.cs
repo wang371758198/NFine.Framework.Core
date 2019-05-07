@@ -50,23 +50,25 @@ namespace NFine.Application.SystemManage
             var moduledata = moduleApp.GetList();
             var buttondata = moduleButtonApp.GetList();
             List<RoleAuthorizeEntity> roleAuthorizeEntitys = new List<RoleAuthorizeEntity>();
-            foreach (var itemId in permissionIds)
-            {
-                RoleAuthorizeEntity roleAuthorizeEntity = new RoleAuthorizeEntity();
-                roleAuthorizeEntity.F_Id = Common.GuId();
-                roleAuthorizeEntity.F_ObjectType = 1;
-                roleAuthorizeEntity.F_ObjectId = roleEntity.F_Id;
-                roleAuthorizeEntity.F_ItemId = itemId;
-                if (moduledata.Find(t => t.F_Id == itemId) != null)
+            if (permissionIds?.Count() > 0)
+                foreach (var itemId in permissionIds)
                 {
-                    roleAuthorizeEntity.F_ItemType = 1;
+                    RoleAuthorizeEntity roleAuthorizeEntity = new RoleAuthorizeEntity();
+                    roleAuthorizeEntity.F_Id = Common.GuId();
+                    roleAuthorizeEntity.F_ObjectType = 1;
+                    roleAuthorizeEntity.F_ObjectId = roleEntity.F_Id;
+                    roleAuthorizeEntity.F_ItemId = itemId;
+                    if (moduledata.Find(t => t.F_Id == itemId) != null)
+                    {
+                        roleAuthorizeEntity.F_ItemType = 1;
+                    }
+                    if (buttondata.Find(t => t.F_Id == itemId) != null)
+                    {
+                        roleAuthorizeEntity.F_ItemType = 2;
+                    }
+                    roleAuthorizeEntity.Create();
+                    roleAuthorizeEntitys.Add(roleAuthorizeEntity);
                 }
-                if (buttondata.Find(t => t.F_Id == itemId) != null)
-                {
-                    roleAuthorizeEntity.F_ItemType = 2;
-                }
-                roleAuthorizeEntitys.Add(roleAuthorizeEntity);
-            }
             service.SubmitForm(roleEntity, roleAuthorizeEntitys, keyValue);
         }
     }

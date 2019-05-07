@@ -17,8 +17,7 @@ namespace NFine.Repository.SystemManage
 
         public void DeleteForm(string keyValue)
         {
-            
-            using (var db = this.repositoryBase .BeginTrans())
+            using (var db = this.repositoryBase.BeginTrans())
             {
                 db.Delete<UserEntity>(t => t.F_Id == keyValue);
                 db.Delete<UserLogOnEntity>(t => t.F_UserId == keyValue);

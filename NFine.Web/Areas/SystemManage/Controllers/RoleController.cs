@@ -40,7 +40,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(RoleEntity roleEntity, string permissionIds, string keyValue)
         {
-            roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);
+            roleApp.SubmitForm(roleEntity, permissionIds?.Split(','), keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
