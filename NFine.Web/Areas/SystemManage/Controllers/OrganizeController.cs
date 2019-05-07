@@ -20,6 +20,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         public ActionResult GetTreeSelectJson()
         {
             var data = organizeApp.GetList();
+            data = data.Where(_ => _.F_EnabledMark == true)?.ToList();
             var treeList = new List<TreeSelectModel>();
             foreach (OrganizeEntity item in data)
             {
