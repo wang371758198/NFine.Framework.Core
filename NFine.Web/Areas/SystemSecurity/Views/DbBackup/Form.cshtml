@@ -36,16 +36,17 @@
                 <td class="formValue">
                     <select id="F_DbName" name="F_DbName" class="form-control required">
                         <option value="NFineBase">NFineBase</option>
+                        <option value="NFine_Code">NFine_Code</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <th class="formTitle">备份名称</th>
                 <td class="formValue">
-                    <input id="F_FileName" name="F_FileName" type="text" class="form-control required"  value="@NFine.Code.Common.CreateNo()" placeholder="请输入备份名称" />
+                    <input id="F_FileName" name="F_FileName" type="text" class="form-control required"  value="@(NFine.Code.Common.CreateNo()).bak" placeholder="请输入备份名称" />
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none;">
                 <th class="formTitle">备份模式</th>
                 <td class="formValue">
                     <select id="F_BackupType" name="F_BackupType" class="form-control required">

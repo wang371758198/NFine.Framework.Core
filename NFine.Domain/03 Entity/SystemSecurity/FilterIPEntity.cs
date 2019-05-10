@@ -2,7 +2,7 @@
 
 namespace NFine.Domain.Entity.SystemSecurity
 {
-    public class DbBackupEntity : ICreationAudited, IDeleteAudited, IModificationAudited
+    public class DbBackupEntity : IEntity<DbBackupEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public string F_BackupType { get; set; }

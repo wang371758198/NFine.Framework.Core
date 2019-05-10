@@ -30,9 +30,11 @@ namespace NFine.Repository.SystemSecurity
         }
         public void ExecuteDbBackup(DbBackupEntity dbBackupEntity)
         {
-            DbHelper.ExecuteSqlCommand(string.Format("backup database {0} to disk ='{1}'", dbBackupEntity.F_DbName, dbBackupEntity.F_FilePath));
-            dbBackupEntity.F_FileSize = FileHelper.ToFileSize(FileHelper.GetFileSize(dbBackupEntity.F_FilePath));
+            DbHelper.ExecuteSqlCommand(string.Format("backup database {0} to disk ='{1}'", dbBackupEntity.F_DbName, dbBackupEntity.F_FileName));
             dbBackupEntity.F_FilePath = "/Resource/DbBackup/" + dbBackupEntity.F_FileName;
+            if (!string.IsNullOrWhiteSpace(dbBackupEntity.F_FilePath) && System.IO.File.Exists(dbBackupEntity.F_FilePath))
+                dbBackupEntity.F_FileSize = FileHelper.ToFileSize(FileHelper.GetFileSize(dbBackupEntity.F_FilePath));
+            dbBackupEntity.Create();
             this.Insert(dbBackupEntity);
         }
     }
