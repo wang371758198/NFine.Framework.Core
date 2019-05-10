@@ -46,6 +46,7 @@ namespace NFine.Application.SystemManage
             else
             {
                 roleEntity.F_Id = Common.GuId();
+                roleEntity.Create();
             }
             var moduledata = moduleApp.GetList();
             var buttondata = moduleButtonApp.GetList();

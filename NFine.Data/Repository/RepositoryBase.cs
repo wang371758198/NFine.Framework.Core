@@ -102,14 +102,27 @@ namespace NFine.Data
         public int Delete<TEntity>(TEntity entity) where TEntity : class
         {
             dbcontext.Set<TEntity>().Attach(entity);
-            dbcontext.Entry<TEntity>(entity).State = EntityState.Deleted;
+            PropertyInfo prop = entity.GetType().GetProperty("F_DeleteMark");
+            prop.SetValue(entity, true);
+            dbcontext.Entry(entity).State = EntityState.Modified;
             return dbTransaction == null ? this.Commit() : 0;
+            //dbcontext.Set<TEntity>().Attach(entity);
+            //dbcontext.Entry<TEntity>(entity).State = EntityState.Deleted;
+            //return dbTransaction == null ? this.Commit() : 0;
         }
         public int Delete<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
         {
             var entitys = dbcontext.Set<TEntity>().Where(predicate)?.ToList();
-            entitys?.ForEach(m => dbcontext.Entry<TEntity>(m).State = EntityState.Deleted);
+            entitys?.ForEach(m =>
+            {
+                PropertyInfo prop = m.GetType().GetProperty("F_DeleteMark");
+                prop.SetValue(m, true);
+                dbcontext.Entry<TEntity>(m).State = EntityState.Modified;
+            });
             return dbTransaction == null ? this.Commit() : 0;
+            //var entitys = dbcontext.Set<TEntity>().Where(predicate)?.ToList();
+            //entitys?.ForEach(m => dbcontext.Entry<TEntity>(m).State = EntityState.Deleted);
+            //return dbTransaction == null ? this.Commit() : 0;
         }
         public TEntity FindEntity<TEntity>(object keyValue) where TEntity : class
         {

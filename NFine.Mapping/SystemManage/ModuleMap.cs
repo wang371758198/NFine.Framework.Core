@@ -14,6 +14,7 @@ namespace NFine.Mapping.SystemManage
         public override void Map(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ModuleEntity>().ToTable("Sys_Module").HasKey(_ => _.F_Id);
+            modelBuilder.Entity<ModuleEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
         }
     }
 }

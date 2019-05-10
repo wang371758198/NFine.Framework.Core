@@ -56,14 +56,27 @@ namespace NFine.Data
         public int Delete(TEntity entity)
         {
             dbcontext.Set<TEntity>().Attach(entity);
-            dbcontext.Entry<TEntity>(entity).State = EntityState.Deleted;
+            PropertyInfo prop = entity.GetType().GetProperty("F_DeleteMark");
+            prop.SetValue(entity, true);
+            dbcontext.Entry(entity).State = EntityState.Modified;
             return dbcontext.SaveChanges();
+            //dbcontext.Set<TEntity>().Attach(entity);
+            //dbcontext.Entry<TEntity>(entity).State = EntityState.Deleted;
+            //return dbcontext.SaveChanges();
         }
         public int Delete(Expression<Func<TEntity, bool>> predicate)
         {
-            var entitys = dbcontext.Set<TEntity>().Where(predicate).ToList();
-            entitys.ForEach(m => dbcontext.Entry<TEntity>(m).State = EntityState.Deleted);
+            var entitys = dbcontext.Set<TEntity>().Where(predicate)?.ToList();
+            entitys?.ForEach(m =>
+            {
+                PropertyInfo prop = m.GetType().GetProperty("F_DeleteMark");
+                prop.SetValue(m, true);
+                dbcontext.Entry<TEntity>(m).State = EntityState.Modified;
+            });
             return dbcontext.SaveChanges();
+            //var entitys = dbcontext.Set<TEntity>().Where(predicate).ToList();
+            //entitys.ForEach(m => dbcontext.Entry<TEntity>(m).State = EntityState.Deleted);
+            //return dbcontext.SaveChanges();
         }
         public TEntity FindEntity(object keyValue)
         {

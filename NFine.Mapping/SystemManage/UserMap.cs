@@ -20,6 +20,7 @@ namespace NFine.Mapping.SystemManage
         public override void Map(ModelBuilder builder)
         {
             builder.Entity<UserEntity>().ToTable("Sys_User").HasKey(_ => _.F_Id);
+            builder.Entity<UserEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
         }
     }
 }

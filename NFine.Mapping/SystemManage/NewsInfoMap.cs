@@ -11,6 +11,7 @@ namespace NFine.Mapping.SystemManage
         public override void Map(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NewsInfoEntity>().ToTable("Sys_NewsInfo").HasKey(_ => _.F_Id);
+            modelBuilder.Entity<NewsInfoEntity>().HasQueryFilter(_ => _.F_DeleteMark != true);
         }
     }
 }
