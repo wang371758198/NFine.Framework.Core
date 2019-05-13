@@ -116,8 +116,11 @@ namespace NFine.Data
             entitys?.ForEach(m =>
             {
                 PropertyInfo prop = m.GetType().GetProperty("F_DeleteMark");
-                prop.SetValue(m, true);
-                dbcontext.Entry<TEntity>(m).State = EntityState.Modified;
+                if (prop != null)
+                {
+                    prop.SetValue(m, true);
+                    dbcontext.Entry<TEntity>(m).State = EntityState.Modified;
+                }
             });
             return dbTransaction == null ? this.Commit() : 0;
             //var entitys = dbcontext.Set<TEntity>().Where(predicate)?.ToList();
