@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text;
+using System.Linq;
 
 namespace NFine.Repository.SystemManage
 {
@@ -26,12 +27,12 @@ namespace NFine.Repository.SystemManage
                                     AND i.F_EnCode = @enCode
                                     AND d.F_EnabledMark = 1
                                     AND d.F_DeleteMark = 0
-                            ORDER BY d.F_SortCode ASC");
+                            ");//ORDER BY F_SortCode ASC
             DbParameter[] parameter = 
             {
                  new SqlParameter("@enCode",enCode)
             };
-            return this.FindList(strSql.ToString(), parameter);
+            return this.FindList(strSql.ToString(), parameter)?.OrderBy(_ => _.F_SortCode)?.ToList();
         }
     }
 }
