@@ -39,6 +39,7 @@
             id: "F_Id",
             text: "F_FullName"
         });
+
     }
     function submitForm() {
         if (!$('#form1').formValid()) {
@@ -68,7 +69,7 @@
                     </td>
                     <th class="formTitle">密码</th>
                     <td class="formValue">
-                        <input id="F_UserPassword" name="F_UserPassword" type="password" class="form-control required" placeholder="请输入密码" />
+                        <input id="F_UserPassword" name="F_UserPassword" type="password" class="form-control required" placeholder="请输入密码" autocomplete='new-password' />
                     </td>
                 </tr>
                 <tr>
@@ -131,7 +132,7 @@
                         <input id="F_Email" name="F_Email" type="text" class="form-control" />
                     </td>
                 </tr>
-                <tr>
+                <tr style="display:none;">
                     <th class="formTitle">类型</th>
                     <td class="formValue">
                         <select id="F_IsAdministrator" name="F_IsAdministrator" class="form-control">
