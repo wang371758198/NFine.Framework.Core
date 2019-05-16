@@ -1,5 +1,6 @@
 # NFine.Framework.Core
 asp.net core 管理系统框架
+#### 示例用户名:admin 密码:000000
 
 ### Docker 
 在Docker中运行时由于linux系统中有的没有libgdiplus组件，所以在创建镜像是安装libgdiplus：
