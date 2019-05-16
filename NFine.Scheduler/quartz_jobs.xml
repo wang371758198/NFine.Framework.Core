@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+    <processing-directives>
+        <overwrite-existing-data>true</overwrite-existing-data>
+    </processing-directives>
+    <schedule>
+        <job>
+            <name>job1</name>
+            <group>group1</group>
+            <description>测试job</description>
+            <job-type>NFine.Scheduler.Jobs.HelloJob,NFine.Scheduler</job-type>
+            <durable>true</durable>
+            <recover>false</recover>
+        </job>
+        <trigger>
+            <simple>
+                <name>job1Simple</name>
+                <group>simpleGroup1</group>
+                <description>示例Simple trigger</description>
+                <job-name>job1</job-name>
+                <job-group>group1</job-group>
+                <repeat-count>20</repeat-count>
+                <repeat-interval>5000</repeat-interval>
+            </simple>
+        </trigger>
+    </schedule>
+  
+</job-scheduling-data>
