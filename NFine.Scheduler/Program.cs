@@ -1,73 +1,30 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using NLog.Extensions.Logging;
-using Quartz;
-using Quartz.Impl;
-using System;
-using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-
-
-
-
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace NFine.Scheduler
 {
-    class Program
+    public class Program
     {
-        private static IConfiguration configuration;
-        private static NameValueCollection nameValueCollection;
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            #region 配置                               /
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true)
-                .AddJsonFile($"appsettings.Development.json", optional: true, reloadOnChange: true)//增加环境配置文件，新建项目默认有
-                .AddEnvironmentVariables();
-            #endregion
-            configuration = builder.Build();
-
-            #region 设置scheduler创建参数          /
-            nameValueCollection = new NameValueCollection();
-            foreach (var config in configuration.GetSection("QuartzNet").GetChildren())
-                nameValueCollection.Add(config.Key, config.Value);
-            #endregion
-
-            var servicesProvider = ConfigureServices(configuration);
-
-            RunProgram(servicesProvider.GetService<StdSchedulerFactory>()).GetAwaiter().GetResult();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-
-        private static async Task RunProgram(StdSchedulerFactory factory)
-        {
-            try
-            {
-                IScheduler scheduler = await factory.GetScheduler();
-
-                await scheduler.Start();
-
-                // and last shut down the scheduler when you are ready to close your program
-                //await scheduler.Shutdown();
-            }
-            catch (SchedulerException se)
-            {
-                await Console.Error.WriteLineAsync(se.ToString());
-            }
-        }
-
-
-        private static IServiceProvider ConfigureServices(IConfiguration config) => new ServiceCollection()
-            .AddSingleton(typeof(StdSchedulerFactory), new StdSchedulerFactory(nameValueCollection))
-               .AddLogging(loggingBuilder =>
-               {
-                   // configure Logging with NLog
-                   loggingBuilder.ClearProviders();
-                   loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-                   loggingBuilder.AddNLog(config);
-               })
-               .BuildServiceProvider();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                  .ConfigureLogging(logging =>
+                  {
+                      logging.ClearProviders();
+                  })
+                .UseNLog()
+                .UseStartup<Startup>();
     }
 }

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NFine.Scheduler</title>
+
+    <environment include="Development">
+       
+    </environment>
+    <environment exclude="Development">
+        
+    </environment>
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container" style="text-align:center;">
+                <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index">NFine.Scheduler</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    text-align: center;">
+        <div class="container">
+            &copy; 2019 - NFine.Scheduler - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <environment include="Development">
+      
+    </environment>
+    <environment exclude="Development">
+        
+    </environment>
+  
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

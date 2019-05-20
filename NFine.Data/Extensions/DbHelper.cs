@@ -9,7 +9,7 @@ namespace NFine.Data.Extensions
 {
     public class DbHelper
     {
-        private static string connstring = ConfigurationManager.ConnectionStrings["NFineDbContext"].ToString();  //ConfigurationManager.ConnectionStrings["NFineDbContext"].ConnectionString;
+        private static string connstring = System.Configuration.ConfigurationManager.ConnectionStrings["NFineDbContext"].ToString();  //ConfigurationManager.ConnectionStrings["NFineDbContext"].ConnectionString;
         public static int ExecuteSqlCommand(string cmdText)
         {
             using (DbConnection conn = new SqlConnection(connstring))

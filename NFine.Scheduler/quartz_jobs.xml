@@ -19,7 +19,7 @@
                 <description>示例Simple trigger</description>
                 <job-name>job1</job-name>
                 <job-group>group1</job-group>
-                <repeat-count>20</repeat-count>
+                <repeat-count>-1</repeat-count>
                 <repeat-interval>5000</repeat-interval>
             </simple>
         </trigger>

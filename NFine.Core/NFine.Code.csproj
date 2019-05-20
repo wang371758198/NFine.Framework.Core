@@ -13,8 +13,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
     <PackageReference Include="NLog" Version="4.5.0-rc07" />
+    <PackageReference Include="Quartz" Version="3.0.7" />
     <PackageReference Include="StackExchange.Redis" Version="1.2.6" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
     <PackageReference Include="ZKWeb.System.Drawing" Version="4.0.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc3" />
   </ItemGroup>
